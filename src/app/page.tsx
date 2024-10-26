@@ -1,21 +1,13 @@
-"use client";
-
-import { useEffect } from "react";
-import { getClient } from "./utils/supabase/browserClient";
-
 import { Login } from "./components/Login";
+import { SearchParams } from "next/dist/server/request/search-params";
 
-export default function Home() {
+export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   
-  // Testing Supabase connection
-  useEffect(() => {
-    const supabase = getClient();
-    supabase.storage
-      .listBuckets()
-      .then((result) => console.log("Bucket List", result));
-  }, []);
-
+  const params = await searchParams;
+  const isMagicLink = params.magicLink === 'yes'
+  console.log(isMagicLink)
+  
   return (
-    <Login />
+    <Login isPasswordLogin={!isMagicLink}/>
   )
 }
