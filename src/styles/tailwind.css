@@ -1,0 +1,54 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* FONTS */
+
+@font-face {
+    font-family: 'GeistVF';
+    src: url('../fonts/GeistVF') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'GeistMonoVF';
+    src: url('../fonts/GeistMonoVF') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'RSLight';
+    src: url('../fonts/PP Right Slab - Light.woff2') format('woff2');
+    font-weight: lighter;
+    font-style: normal;
+}
+    
+@font-face {
+    font-family: 'RSRegular';
+    src: url('../fonts/PP Right Slab - Medium.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+    
+@font-face {
+    font-family: 'RSBold';
+    src: url('../fonts/PP Right Slab - Bold.woff2') format('woff2');
+    font-weight: bold;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'RSSReg';
+    src: url('../fonts/PP Right Slab - Wide Regular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+  
+@font-face {
+    font-family: 'RSSBlack';
+    src: url('../fonts/PP Right Slab - Wide Bold.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}

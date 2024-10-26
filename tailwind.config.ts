@@ -11,7 +11,15 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'dark': '#1D282D',
+        'light': '#F4F3F1',
+        'accent': '#DE4E2A',
+        'accent-green': '#07EE98'
       },
+      fontFamily: {
+        'reg': ['GeistVF', 'sans-serif'],
+        'mono': ['GeistMonoVF', 'sans-serif'],
+      }
     },
   },
   plugins: [],
