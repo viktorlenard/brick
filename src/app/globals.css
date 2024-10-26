@@ -2,15 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Light theme colors */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #F4F3F1;
+  --foreground: #1D282D;
 }
 
+/* Dark theme colors */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #1D282D;
+    --foreground: #F4F3F1;
   }
 }
 
