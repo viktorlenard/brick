@@ -13,7 +13,7 @@ import { useRef, useState, useEffect } from 'react';
 
 gsap.registerPlugin(useGSAP);
 
-const ButtonStyle = 'px-1 py-1 rounded-sm font-mono font-bold' 
+const ButtonStyle = 'px-1 py-1 rounded-sm font-mono' 
 const innerStyle = 'relative flex flex-col overflow-hidden justify-center items-center'
 const spanStyle = 'whitespace-nowrap'
 

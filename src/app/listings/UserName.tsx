@@ -8,10 +8,10 @@ interface UserNameProps {
 export const UserName = ({ userName, tenantName } : UserNameProps) => {
 
     return(
-        <>
-            <h1>{userName}</h1>
-            {tenantName && <h3>{tenantName}</h3>}
-        </>
+        <div className='flex flex-col my-2 items-end'>
+            <h1 className='font-bold'>{userName}</h1>
+            {tenantName && <h3 className='leading-none text-sm'>{tenantName}</h3>}
+        </div>
     )
 }
 

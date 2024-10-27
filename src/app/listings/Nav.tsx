@@ -5,6 +5,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { getClient } from "../utils/supabase/browserClient";
 
+import { Button } from "../components/Button";
+
 export const Nav = () => {
 
     const supabase = getClient()
@@ -24,13 +26,16 @@ export const Nav = () => {
 
     return(
         <>
-            <div>
-                <h1>THE NAV BAR</h1>
-                <Link role="button" href="/logout" prefetch={false} 
+            <div className='flex min-h-12 flex-row items-center justify-between border-0 border-b-2 border-accent text-xl'>
+                <div onClick={() => router.push('/')} 
+                className='min-w-24 py-2 cursor-pointer hover:text-accent transition-all'>
+                    <h1 className='font-black '>BRICK:</h1>
+                </div>
+                <Button dark={true} href="/logout" prefetch={false} 
                     onClick={(event) => {
                         event.preventDefault(); 
                         supabase.auth.signOut()}}>Logout
-                </Link>
+                </Button>
             </div>
         </>
     )

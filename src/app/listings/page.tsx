@@ -28,7 +28,7 @@ export const ListingsPage = () => {
     const id = 1
 
     return(
-        <div>
+        <div className='min-h-dvh'>
             Listings will go here.
             <ListingsList listings={dummyListings} />
         </div>

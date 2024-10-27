@@ -8,6 +8,8 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
   console.log(isMagicLink)
   
   return (
-    <Login isPasswordLogin={!isMagicLink}/>
+    <div className="min-h-dvh min-w-full flex flex-col justify-center items-center">
+      <Login isPasswordLogin={!isMagicLink}/>
+    </div>
   )
 }
