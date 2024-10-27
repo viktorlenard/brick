@@ -17,8 +17,10 @@ const config: Config = {
         'accent-green': '#07EE98'
       },
       fontFamily: {
-        'reg': ['GeistVF', 'sans-serif'],
-        'mono': ['GeistMonoVF', 'sans-serif'],
+        slab: ["Roboto Slab", "serif"],
+        mono: ["Roboto Mono", "monospace"],
+        // 'reg': ['GeistVF', 'sans-serif'],
+        // 'mono': ['GeistMonoVF', 'sans-serif'],
       }
     },
   },

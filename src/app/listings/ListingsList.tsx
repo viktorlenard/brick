@@ -13,7 +13,7 @@ type ListingListProps = {
 
 export const ListingsList = ({ listings }: ListingListProps) => {
     return (
-        <table>
+        <table className='font-slab '>
             <thead>
                 <tr>
                     <th>ID</th>

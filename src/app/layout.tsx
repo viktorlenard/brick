@@ -6,7 +6,7 @@ import { Container } from "./components/Container";
 
 export const metadata: Metadata = {
   title: "Brick",
-  description: "Something SaaS",
+  description: "SaaS",
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={'antialiased'}>
+      <body className={'antialiased font-slab'}>
         <Container>{children}</Container>
       </body>
     </html>

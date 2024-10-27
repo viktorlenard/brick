@@ -4,18 +4,20 @@ import { useRef } from "react"
 import { useRouter } from "next/navigation"
 import { getClient } from "./utils/supabase/browserClient"
 
+import { Button } from "./components/Button"
+
 interface LoginProps {
     isPasswordLogin: boolean,
 }
 
-const labelStyle = 'flex flex-col items-center'
+const labelStyle = 'flex flex-col items-center font-mono font-bold text-sm'
 
 
 export const Login = ({ isPasswordLogin } : LoginProps ) => {
 
     const router = useRouter()
     const supabase = getClient()
-    
+
     const emailInputRef = useRef<HTMLInputElement>(null);
     const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -50,9 +52,10 @@ export const Login = ({ isPasswordLogin } : LoginProps ) => {
                     </label>
                 </div>
                 <div>
-                    <button className='outline outline-1 px-7 hover:bg-dark hover:text-light' type="submit">
+                    {/* <button className='outline outline-1 px-7 hover:bg-dark hover:text-light' type="submit">
                         Sign in with {isPasswordLogin ? " Password" : " Magic Link"}
-                    </button>
+                    </button> */}
+                    <Button type="submit" size={'s'} dark={true}>Sign in with {isPasswordLogin ? " Password" : " Magic Link"}</Button>
                 </div>
             </form>
         </div>

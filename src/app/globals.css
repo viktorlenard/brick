@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Roboto Slab & Roboto Mono */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Slab:wght@100..900&display=swap');
+
 /* Light theme colors */
 :root {
   --background: #F4F3F1;
@@ -9,12 +12,12 @@
 }
 
 /* Dark theme colors */
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #1D282D;
     --foreground: #F4F3F1;
   }
-}
+} */
 
 body {
   color: var(--foreground);
