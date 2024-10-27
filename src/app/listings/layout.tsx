@@ -3,17 +3,17 @@ import { PropsWithChildren } from "react"
 import { Nav } from "./Nav"
 import { UserName } from "./UserName"
 
-export const DashboardLayout = (pageProps : PropsWithChildren) => {
+export const ListingsLayout = (pageProps : PropsWithChildren) => {
 
     return(
         <>
             <section>
-                <UserName userName="Viktor" tenantName="Fake Business"/>
                 <Nav />
+                <UserName userName="Viktor" tenantName="Fake Business"/>
             </section>
             <section>{pageProps.children}</section>
         </>
     )
 }
 
-export default DashboardLayout
+export default ListingsLayout
