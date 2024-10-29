@@ -7,7 +7,10 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
     
     const knownErrors = [
         'login-failed',
-        'invalid-input'
+        'invalid-input',
+        'magiclink',
+        'invalid_token',
+        'invalid_magiclink'
     ]
 
     return(
@@ -23,6 +26,24 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
                     )}
                     {type === "invalid-input" && (
                         <p className='font-bold'>Incorrect form data. Sus.</p>
+                    )}
+                    {type === "magiclink" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Failed to send magic link.</p>
+                            <p>Please make sure the email address is correct.</p>
+                        </div>
+                    )}
+                    {type === "invalid_token" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Invalid token value.</p>
+                            <p>Something is really messed up here.</p>
+                        </div>
+                    )}
+                    {type === "invalid_magiclink" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Invalid magic link.</p>
+                            <p>Please request a new one.</p>
+                        </div>
                     )}
                     {type && typeof type === 'string' && !knownErrors.includes(type) && (
                         <div className='font-bold'>

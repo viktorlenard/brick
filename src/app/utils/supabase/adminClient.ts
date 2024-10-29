@@ -1,4 +1,5 @@
-// Create admin client.
+// Create admin client. 
+//No cookie management, as we're not handling user sessions with adminClient
 
 import { createClient } from "@supabase/supabase-js";
 
