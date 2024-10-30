@@ -1,15 +1,23 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getAdminClient } from "@/app/utils/supabase/adminClient"
 import nodemailer from "nodemailer"
+import { SearchParams } from "next/dist/server/request/search-params"
+
+type LinkType = 'recovery' | 'login'
+
+const isValidLinkType = (value: any): value is LinkType => {
+    return value === 'recovery' || value === 'login'
+}
 
 export const POST = async (request : NextRequest) => {
     
     const formData = await request.formData()
     const email = formData.get("email")
+    const linkType = formData.get('type')
 
     const supabaseAdmin = getAdminClient()
 
-    if (typeof email !== "string") {
+    if (typeof email !== "string" || !isValidLinkType(linkType)) {
         return NextResponse.redirect(
             new URL(`/error?type=invalid-input`, request.url),
             { status: 302 }
@@ -32,7 +40,7 @@ export const POST = async (request : NextRequest) => {
     // Extract the hashed_token from the link properties
     const { hashed_token } = linkData.properties
     // Construct custom magic link.
-    const constructedLink = new URL(`/auth/verify?hashed_token=${hashed_token}`, request.url)
+    const constructedLink = new URL(`/auth/verify?hashed_token=${hashed_token}&type=${linkType}`, request.url)
     // Initialise a transporter to send custom email.
     const transporter = nodemailer.createTransport({
         host: 'localhost',
@@ -50,7 +58,7 @@ export const POST = async (request : NextRequest) => {
     })
 
     return NextResponse.redirect(
-        new URL('/magic-thanks', request.url),{ status: 302 }
+        new URL(`/magic-thanks?type=${linkType}`, request.url), { status: 302 }
     )
 
 }

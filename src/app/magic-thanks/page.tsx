@@ -1,7 +1,10 @@
 import Link from 'next/link'
-import { Button } from '../components/Button' 
+import { Button } from '../components/Button'
+import { SearchParams } from 'next/dist/server/request/search-params'
 
-export const MagicLinkSuccessPage = () => {
+export const MagicLinkSuccessPage = async ( { searchParams } : { searchParams : SearchParams }) => {
+
+    const { type } = await searchParams;
 
     return(
         <div className='flex flex-col bg-light text-dark min-h-dvh min-w-full items-center justify-center'>
@@ -13,7 +16,11 @@ export const MagicLinkSuccessPage = () => {
                 <div className='mb-5 text-center'>
                     <div className='font-bold'>
                         <p className='font-bold'>Email on the way!</p>
-                        <p className='font-bold'>Your magic link should arrive in a few seconds.</p>
+                        {(type === 'recovery' || type === 'login') ? (
+                            <p className='font-bold'>{`Your ${type} link should arrive in a few seconds.`}</p>
+                            ) : (
+                            <p className='font-bold'>Your magic link should arrive in a few seconds.</p>
+                            )}
                     </div>
                 </div>
                 <div className='min-w-full flex items-center justify-center'>

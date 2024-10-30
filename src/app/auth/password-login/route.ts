@@ -27,7 +27,7 @@ export const POST = async (request : NextRequest) => {
     }
 
     return NextResponse.redirect(
-        new URL('/tickets', request.url),{ status: 302 }
+        new URL('/listings', request.url),{ status: 302 }
     )
 
 }

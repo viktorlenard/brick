@@ -11,7 +11,7 @@ interface LoginProps {
     isPasswordLogin: boolean,
 }
 
-const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
+export const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
 
 
 export const Login = ({ isPasswordLogin } : LoginProps ) => {
@@ -65,10 +65,13 @@ export const Login = ({ isPasswordLogin } : LoginProps ) => {
                         </div>
                     )}
                 </div>
+                {!isPasswordLogin && (
+                    <input type="hidden" name="type" value="login" />
+                )}
                 <div className='mt-4'>
                     <Button type="submit" size={'s'} dark={true}>Sign in</Button>
                 </div>
-                <div className='mt-4'>
+                <div className='mt-4 flex flex-col items-center'>
                     {!isPasswordLogin && (
                         <Link href={{pathname: '/', query:{ magicLink: 'no' }}} 
                         className='text-xs hover:underline' role='button' >Sign in with password</Link>
@@ -77,6 +80,7 @@ export const Login = ({ isPasswordLogin } : LoginProps ) => {
                         <Link href={{pathname: '/', query:{ magicLink: 'yes' }}} 
                         className='text-xs hover:underline' role='button' >Sign in with Magic Link</Link>
                     )}
+                    <Link href={'/recovery'}  className='text-xs hover:underline mt-4' >Unable to sign in</Link>
                 </div>
             </form>
         </div>

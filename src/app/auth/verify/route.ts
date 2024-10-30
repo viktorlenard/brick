@@ -1,10 +1,12 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getUtilClient } from "@/app/utils/supabase/cookiesUtilClient"
+import { link } from "fs"
 
 export const GET = async (request : NextRequest) => {
 
     const { searchParams } = new URL(request.url)
     const hashed_token = searchParams.get('hashed_token')
+    const linkType = searchParams.get('type')
 
     const supabase = await getUtilClient()
 
@@ -24,7 +26,11 @@ export const GET = async (request : NextRequest) => {
             new URL("/error?type=invalid_magiclink", request.url)
         );
     } else {
-        return NextResponse.redirect(new URL("/listings", request.url));
+        if(linkType === 'recovery'){
+            return NextResponse.redirect(new URL('/listings/change-password', request.url))
+        } else if(linkType === 'login'){
+            return NextResponse.redirect(new URL("/listings", request.url));
+        }
     }
 
 }
