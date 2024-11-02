@@ -6,15 +6,18 @@ import { getClient } from "./utils/supabase/browserClient"
 import Link from "next/link"
 
 import { Button } from "./components/Button"
+import { tenantIds } from "@/tenant_map"
 
 interface LoginProps {
     isPasswordLogin: boolean,
+    tenantName?: string
+    tenantId?: string
 }
 
 export const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
 
 
-export const Login = ({ isPasswordLogin } : LoginProps ) => {
+export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) => {
     
     const router = useRouter()
     const supabase = getClient()
@@ -28,17 +31,25 @@ export const Login = ({ isPasswordLogin } : LoginProps ) => {
         const { data: { subscription }} = supabase.auth.onAuthStateChange(
             (event, session) => {
                 if(event === 'SIGNED_IN'){
-                    router.push("/listings");
+                    if(tenantId){
+                        router.push(`/${tenantId}/dashboard`);    
+                    } else {
+                        router.push("/listings");
+                    }
                 }
             })
         // Cleanup
         return () => subscription.unsubscribe()
-    }, [])
+    }, [tenantId])
 
     return(
         <div className='flex items-center align-center flex-col'>
             <h1 className='font-black text-4xl leading-none'>BRICK:</h1>
-            <h3 className='font-bold text-accent leading-none'>in development</h3>
+            {tenantName ? (
+                <h3 className='font-bold text-blue-800 leading-none'>{tenantName}</h3>    
+            ) : (
+                <h3 className='font-bold text-accent leading-none'>in development</h3>
+            )}
             <form className='flex flex-col items-center' 
                 action={isPasswordLogin ? '/auth/password-login/' : '/auth/magic-link'} method='POST' 
                 onSubmit={(e) => {isPasswordLogin && e.preventDefault();

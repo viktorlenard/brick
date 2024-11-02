@@ -5,7 +5,6 @@ export default async function Home({ searchParams }: { searchParams: SearchParam
   
   const params = await searchParams;
   const isMagicLink = params.magicLink === 'yes'
-  const wantsPasswordRecovery = params.passwordRecovery === "yes";
   
   return (
     <div className="min-h-dvh min-w-full flex flex-col justify-center items-center">

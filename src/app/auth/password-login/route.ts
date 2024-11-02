@@ -26,6 +26,7 @@ export const POST = async (request : NextRequest) => {
         )
     }
 
+    console.log(request.url)
     return NextResponse.redirect(
         new URL('/listings', request.url),{ status: 302 }
     )
