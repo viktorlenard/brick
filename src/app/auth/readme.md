@@ -8,3 +8,9 @@ Sign in on the back-end, even with disabled JavaScript in the browser.
 
 ### logout/route.ts
 Sign out on the back-end, even with disabled JavaScript in the browser.
+
+### magic-link/route.ts
+Generate magic link via admin client, then construct custom email and send it to the user.
+
+### verify/route.ts
+Verify aforementioned magic link to sign in user.

@@ -1,7 +1,7 @@
 import { getReqResClient } from "./app/utils/supabase/reqResClient";
 import { type NextRequest, NextResponse } from "next/server";
-
-const protectedRoutes = ['/listings', '/profile']
+import { TENANT_MAP, protectedRoutes } from "./tenant_map";
+import { handleRouting, getFirstSegment } from "./app/utils/middleware/helpers";
 
 export async function middleware(request: NextRequest) {
     
@@ -12,12 +12,23 @@ export async function middleware(request: NextRequest) {
     
     // Using the middleware to protect routes & redirect logged in users.
     const requestedPath = request.nextUrl.pathname;
+    const { tenant, applicationPath} = handleRouting(requestedPath)
+
     const sessionUser = session.data?.session?.user
 
-    if (protectedRoutes.some(route => requestedPath.startsWith(route))) {
+    console.log(sessionUser)
+
+    // Business route requested.
+    if (protectedRoutes.business.includes('/'+ tenant)){
+        if(!sessionUser){
+            return NextResponse.redirect(new URL("/", request.url))
+    }
+    // Consumer route requsted
+    } else if (protectedRoutes.consumer.includes(getFirstSegment(applicationPath))) {
         if(!sessionUser){
             return NextResponse.redirect(new URL("/", request.url))
         }
+    // Home page requested
     } else if (requestedPath === "/") {
         if(sessionUser){
             return NextResponse.redirect(new URL("/listings", request.url))
