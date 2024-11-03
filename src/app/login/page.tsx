@@ -3,38 +3,44 @@ import { SearchParams } from "next/dist/server/request/search-params";
 import { getAdminClient } from "../utils/supabase/adminClient";
 import { notFound } from "next/navigation";
 
+type TenantData = {
+    name?: string,
+    id?: string
+} | undefined
+
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   
     const params = await searchParams;
     const isMagicLink = params.magicLink === 'yes'
-    let tenant = Array.isArray(params.tenant) ? params.tenant[0] : params.tenant;
-    // let tenant = params.tenant;
+    let searchTenant = Array.isArray(params.tenant) ? params.tenant[0] : params.tenant;
+    let tenantData: TenantData = undefined
 
     const supabaseAdmin = getAdminClient();
-    if(tenant) {
+    if(searchTenant) {
         try {
             const supabaseAdmin = getAdminClient();
             const { data, error } = await supabaseAdmin
                 .from("tenants")
                 .select("*")
-                .eq("id", tenant)
+                .eq("id", searchTenant)
                 .single();
                 
-            if(error) {
-                tenant = undefined;
-            } else {
-                const { name: tenantName, id: tenantId } = data;
+            if(!error && data) {
+                tenantData = {
+                    name: data.name,
+                    id: data.id
+                };
             }
         } catch {
-            tenant = undefined;
+            tenantData = undefined;
         }
     }
 
-    console.log('Login page. Tenant: ' + tenant)
+    console.log('Login page. Tenant: ' + searchTenant)
   
     return (
         <div className="min-h-dvh min-w-full flex flex-col justify-center items-center">
-            <Login tenantName={tenant} isPasswordLogin={!isMagicLink}/>
+            <Login tenant={{name: tenantData?.name, id: tenantData?.id}} isPasswordLogin={!isMagicLink}/>
         </div>
   )
 }

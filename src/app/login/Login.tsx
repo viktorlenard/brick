@@ -9,14 +9,16 @@ import { Button } from "../components/Button"
 
 interface LoginProps {
     isPasswordLogin: boolean,
-    tenantName?: string | undefined
-    tenantId?: string
+    tenant?: {
+        name: string | undefined
+        id: string | undefined
+    }
 }
 
 export const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
 
 
-export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) => {
+export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
     
     const router = useRouter()
     const supabase = getClient()
@@ -30,8 +32,8 @@ export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) =
         const { data: { subscription }} = supabase.auth.onAuthStateChange(
             (event, session) => {
                 if(event === 'SIGNED_IN'){
-                    if(tenantId){
-                        router.push(`/${tenantId}/dashboard`);    
+                    if(tenant?.id){
+                        router.push(`/${tenant.id}/dashboard`);    
                     } else {
                         router.push("/consumer/listings");
                     }
@@ -39,13 +41,13 @@ export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) =
             })
         // Cleanup
         return () => subscription.unsubscribe()
-    }, [tenantId])
+    }, [tenant])
 
     return(
         <div className='flex items-center align-center flex-col'>
             <h1 className='font-black text-4xl leading-none'>BRICK:</h1>
-            {tenantName ? (
-                <h3 className='font-bold text-blue-800 leading-none'>{tenantName}</h3>    
+            {tenant?.name ? (
+                <h3 className='font-bold text-blue-800 leading-none'>{tenant?.name}</h3>    
             ) : (
                 <h3 className='font-bold text-accent leading-none'>in development</h3>
             )}
@@ -83,14 +85,14 @@ export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) =
                 </div>
                 <div className='mt-4 flex flex-col items-center'>
                     {!isPasswordLogin && (
-                        <Link href={{pathname: '/login', query:{ magicLink: 'no', tenant: tenantName }}} 
+                        <Link href={{pathname: '/login', query:{ magicLink: 'no', tenant: tenant?.id }}} 
                         className='text-xs hover:underline' role='button' >Sign in with password</Link>
                     )}
                     {isPasswordLogin && (
-                        <Link href={{pathname: '/login', query:{ magicLink: 'yes', tenant: tenantName }}} 
+                        <Link href={{pathname: '/login', query:{ magicLink: 'yes', tenant: tenant?.id }}} 
                         className='text-xs hover:underline' role='button' >Sign in with Magic Link</Link>
                     )}
-                    <Link href={{pathname:'/recovery', query:{tenant: tenantName}}} className='text-xs hover:underline mt-4' >Unable to sign in</Link>
+                    <Link href={{pathname:'/recovery', query:{tenant: tenant?.id}}} className='text-xs hover:underline mt-4' >Unable to sign in</Link>
                 </div>
             </form>
         </div>
