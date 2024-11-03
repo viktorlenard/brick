@@ -1,7 +1,7 @@
 import { getReqResClient } from "./app/utils/supabase/reqResClient";
 import { type NextRequest, NextResponse } from "next/server";
-import { TENANT_MAP, protectedRoutes } from "./tenant_map";
-import { handleRouting, getFirstSegment } from "./app/utils/url-helpers";
+import { protectedRoutes } from "./tenant_map";
+import { handleRouting } from "./app/utils/url-helpers";
 
 export async function middleware(request: NextRequest) {
     
@@ -16,24 +16,30 @@ export async function middleware(request: NextRequest) {
 
     const sessionUser = session.data?.session?.user
 
+    // CURSED DEBUG LOG. I WANT IT.
+    console.log('---------------------------------------------' + 
+        '\nMIDDLEWARE \nROUTE REQUESTED    ' + requestedPath +
+        '\nTENANT              ' + tenant + 
+        '\nAPPLICATION PATH   ' + applicationPath + 
+        '\n---------------------------------------------')
+
     // Business route requested.
     if (protectedRoutes.business.includes('/'+ tenant)){
-        if(!sessionUser){
-            if (requestedPath !== `/${tenant}/login`) {
-                return NextResponse.redirect(new URL(`/${tenant}/login`, request.url));
-            }
+        if (!sessionUser) {
+            return NextResponse.redirect(new URL(`/login/?tenant=${tenant}`, request.url));
     }
     // Consumer route requsted
-    } else if (protectedRoutes.consumer.includes(getFirstSegment(applicationPath))) {
+    // protectedRoutes.consumer.includes(getFirstSegment(applicationPath)
+    } else if (protectedRoutes.consumer.includes('/' + tenant)) {
         if(!sessionUser){
-            if (requestedPath !== "/") {
-                return NextResponse.redirect(new URL("/", request.url));
+            if (requestedPath !== "/login") {
+                return NextResponse.redirect(new URL("/consumer/listings", request.url));
             }
         }
     // Home page requested
-    } else if (requestedPath === "/") {
+    } else if (requestedPath === "/" || requestedPath === "/login") {
         if(sessionUser){
-            return NextResponse.redirect(new URL("/listings", request.url))
+            return NextResponse.redirect(new URL("/consumer/listings", request.url))
         }
     }
     

@@ -5,10 +5,16 @@ import { NextRequest } from "next/server";
 const isTenantRoute = (path: string): boolean => {
     if (!path || !path.startsWith('/')) return false;
     const [potentialTenant] = path.slice(1).split('/');
-    return TENANT_MAP.some(config => config.tenantId === potentialTenant);
+    if(TENANT_MAP.some(config => config.tenantId === potentialTenant)){
+        return true
+    } else if (potentialTenant === 'consumer'){
+        return true
+    } else {
+        return false
+    }
 }
 // Returns the tenant, and the rest of the path requested. 
-export const handleRouting = (requestedPath: string) : {tenant: string, applicationPath: string} => {
+export const handleRouting = (requestedPath: string) : {tenant: string | undefined, applicationPath: string} => {
     if(isTenantRoute(requestedPath)) {
         const [tenant, ...restOfPath] = requestedPath.slice(1).split("/");
         const applicationPath = "/" + restOfPath.join("/");
@@ -18,7 +24,7 @@ export const handleRouting = (requestedPath: string) : {tenant: string, applicat
         }
     } else {
         return {
-            tenant: 'consumer',
+            tenant: undefined,
             applicationPath: requestedPath
         }
     }

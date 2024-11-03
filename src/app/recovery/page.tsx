@@ -4,10 +4,14 @@ import { useRef } from "react"
 import { labelStyle } from "../Login"
 import { Button } from "../components/Button"
 import { getClient } from "../utils/supabase/browserClient"
+import { SearchParams } from "next/dist/server/request/search-params"
+import { useSearchParams } from "next/navigation"
 
 export const RecoveryPage = () => {
 
+    const params = useSearchParams()
     const emailInputRef = useRef<HTMLInputElement>(null)
+    const tenantName = params.get('tenant')
 
     const supabase = getClient()
 
@@ -31,7 +35,7 @@ export const RecoveryPage = () => {
                 </div>
             </form>
             <div className='mt-4 flex flex-col items-center'>
-                <Link href={'/'}  className='text-xs hover:underline mt-4' >Go back</Link>
+                <Link href={{pathname:'/login', query:{ tenant: tenantName }}}  className='text-xs hover:underline mt-4' >Go back</Link>
             </div>
         </div>
     )

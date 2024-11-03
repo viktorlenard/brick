@@ -2,15 +2,14 @@
 
 import { useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { getClient } from "./utils/supabase/browserClient"
+import { getClient } from "../utils/supabase/browserClient"
 import Link from "next/link"
 
-import { Button } from "./components/Button"
-import { tenantIds } from "@/tenant_map"
+import { Button } from "../components/Button"
 
 interface LoginProps {
     isPasswordLogin: boolean,
-    tenantName?: string
+    tenantName?: string | undefined
     tenantId?: string
 }
 
@@ -84,14 +83,14 @@ export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) =
                 </div>
                 <div className='mt-4 flex flex-col items-center'>
                     {!isPasswordLogin && (
-                        <Link href={{pathname: '/', query:{ magicLink: 'no' }}} 
+                        <Link href={{pathname: '/login', query:{ magicLink: 'no', tenant: tenantName }}} 
                         className='text-xs hover:underline' role='button' >Sign in with password</Link>
                     )}
                     {isPasswordLogin && (
-                        <Link href={{pathname: '/', query:{ magicLink: 'yes' }}} 
+                        <Link href={{pathname: '/login', query:{ magicLink: 'yes', tenant: tenantName }}} 
                         className='text-xs hover:underline' role='button' >Sign in with Magic Link</Link>
                     )}
-                    <Link href={'/recovery'}  className='text-xs hover:underline mt-4' >Unable to sign in</Link>
+                    <Link href={{pathname:'/recovery', query:{tenant: tenantName}}} className='text-xs hover:underline mt-4' >Unable to sign in</Link>
                 </div>
             </form>
         </div>

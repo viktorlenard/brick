@@ -8,6 +8,14 @@ const nextConfig: NextConfig = {
       permanent: true
     },
   ],
+  rewrites: async () => {
+    return [
+      {
+        source: '/consumer/:path*',
+        destination: '/:path*',
+      }
+    ]
+  }
 };
 
 export default nextConfig;

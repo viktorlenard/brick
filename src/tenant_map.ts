@@ -19,8 +19,8 @@ export const TENANT_MAP: TenantConfig[] = [
     { domain: 'smiths.com', tenantId: 'smiths' },
 ];
 
-const consumerProtectedRoutes = ['/listings', '/profile']
-const tenantIds = TENANT_MAP.map(config => `/${config.tenantId}`);
+const consumerProtectedRoutes = ['/consumer']
+export const tenantIds = TENANT_MAP.map(config => `/${config.tenantId}`);
 
 export const protectedRoutes: RouteConfig = {
     consumer: consumerProtectedRoutes,
