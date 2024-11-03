@@ -1,17 +1,6 @@
-// Tenant map for later use. Value can be repeating which isn't ideal.
-export type TenantConfig = {
-    domain: string;
-    tenantId: string;
-}
+import { TenantConfig, ValidRoute, ProtectedRoutes } from "./app/utils/routing-helpers";
 
-export type RouteConfig = {
-    consumer: string[];
-    business: string[];
-};
-
-const validRoutePattern = /^\/[a-z0-9-_]+$/;
-const isValidRoute = (route: string): boolean => validRoutePattern.test(route);
-
+// TENANT_MAP. Manually add tenants to match DB.
 export const TENANT_MAP: TenantConfig[] = [
     { domain: 'foxtons.com', tenantId: 'foxtons' },
     { domain: 'merton.com', tenantId: 'merton' },
@@ -19,10 +8,15 @@ export const TENANT_MAP: TenantConfig[] = [
     { domain: 'smiths.com', tenantId: 'smiths' },
 ];
 
-const consumerProtectedRoutes = ['/consumer']
-export const tenantIds = TENANT_MAP.map(config => `/${config.tenantId}`);
+// consumer and shared protectedRoutes. Manually add routes. 
+const consumerProtectedRoutes: ValidRoute[] = ['/consumer']
+const sharedProtectedRoutes: ValidRoute[] = ['/account']
+// Fill protectedRoutes with the proper information.
+const tenantIds: ValidRoute[] = TENANT_MAP.map(config => `/${config.tenantId}` as ValidRoute);
 
-export const protectedRoutes: RouteConfig = {
+
+export const protectedRoutes: ProtectedRoutes = {
     consumer: consumerProtectedRoutes,
-    business: tenantIds
+    business: tenantIds,
+    shared: sharedProtectedRoutes
 };

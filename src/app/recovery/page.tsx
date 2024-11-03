@@ -4,7 +4,6 @@ import { useRef } from "react"
 import { labelStyle } from "../Login"
 import { Button } from "../components/Button"
 import { getClient } from "../utils/supabase/browserClient"
-import { SearchParams } from "next/dist/server/request/search-params"
 import { useSearchParams } from "next/navigation"
 
 export const RecoveryPage = () => {

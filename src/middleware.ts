@@ -1,7 +1,7 @@
 import { getReqResClient } from "./app/utils/supabase/reqResClient";
 import { type NextRequest, NextResponse } from "next/server";
 import { protectedRoutes } from "./tenant_map";
-import { handleRouting } from "./app/utils/url-helpers";
+import { handleRouting } from "./app/utils/routing-helpers";
 
 export async function middleware(request: NextRequest) {
     
@@ -23,20 +23,23 @@ export async function middleware(request: NextRequest) {
         '\nAPPLICATION PATH   ' + applicationPath + 
         '\n---------------------------------------------')
 
-    // Business route requested.
-    if (protectedRoutes.business.includes('/'+ tenant)){
+    // READ: THIS IS CURRENTLY CONVELUTED. I MIGHT NEED THIS LOGIC LATER. FUCK YOU.
+    // Business protected route requested.
+    if (protectedRoutes.business.includes(`/${tenant}`)){
         if (!sessionUser) {
             return NextResponse.redirect(new URL(`/login/?tenant=${tenant}`, request.url));
     }
-    // Consumer route requsted
-    // protectedRoutes.consumer.includes(getFirstSegment(applicationPath)
-    } else if (protectedRoutes.consumer.includes('/' + tenant)) {
+    // Consumer protected route requsted
+    } else if (protectedRoutes.consumer.includes(`/${tenant}`)) {
         if(!sessionUser){
-            if (requestedPath !== "/login") {
-                return NextResponse.redirect(new URL("/consumer/listings", request.url));
-            }
+            return NextResponse.redirect(new URL('/login/', request.url));
         }
-    // Home page requested
+    // Shared protected route requested.
+    } else if (protectedRoutes.shared.includes(`/${tenant}`)) {
+        if(!sessionUser){
+            return NextResponse.redirect(new URL('/login/', request.url))
+        }
+    // Home page requested. NEED FIXING LATER
     } else if (requestedPath === "/" || requestedPath === "/login") {
         if(sessionUser){
             return NextResponse.redirect(new URL("/consumer/listings", request.url))

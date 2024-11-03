@@ -6,7 +6,6 @@ import { getClient } from "./utils/supabase/browserClient"
 import Link from "next/link"
 
 import { Button } from "./components/Button"
-import { tenantIds } from "@/tenant_map"
 
 interface LoginProps {
     isPasswordLogin: boolean,
