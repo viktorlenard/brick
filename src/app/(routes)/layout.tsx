@@ -1,7 +1,7 @@
 import { PropsWithChildren } from "react"
 
-import { Nav } from "./Nav"
-import { UserName } from "./UserName"
+import { Nav } from "./listings/Nav"
+import { UserName } from "./listings/UserName"
 
 export const ListingsLayout = (pageProps : PropsWithChildren) => {
 

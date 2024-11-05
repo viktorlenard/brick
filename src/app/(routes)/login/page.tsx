@@ -1,6 +1,6 @@
 import { Login } from "./Login";
 import { SearchParams } from "next/dist/server/request/search-params";
-import { getAdminClient } from "../utils/supabase/adminClient";
+import { getAdminClient } from "@/app/utils/supabase/adminClient";
 import { notFound } from "next/navigation";
 
 type TenantData = {

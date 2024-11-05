@@ -12,37 +12,37 @@ export async function middleware(request: NextRequest) {
     
     // Using the middleware to protect routes & redirect logged in users.
     const requestedPath = request.nextUrl.pathname;
-    const { tenant, applicationPath} = handleRouting(requestedPath)
+    const { tenant, route, applicationPath} = handleRouting(requestedPath)
 
     const sessionUser = session.data?.session?.user
 
     // CURSED DEBUG LOG. I WANT IT.
     console.log('---------------------------------------------' + 
         '\nMIDDLEWARE \nROUTE REQUESTED    ' + requestedPath +
+        '\nROUTE              ' + route + 
         '\nTENANT              ' + tenant + 
         '\nAPPLICATION PATH   ' + applicationPath + 
         '\n---------------------------------------------')
 
-    // READ: THIS IS CURRENTLY CONVELUTED. I MIGHT NEED THIS LOGIC LATER. FUCK YOU.
-    // Business protected route requested.
-    if (protectedRoutes.business.includes(`/${tenant}`)){
+    // Tenant route requested.
+    if (tenant){
         if (!sessionUser) {
-            return NextResponse.redirect(new URL(`/login/?tenant=${tenant}`, request.url));
+            return NextResponse.redirect(new URL(`/${tenant}/login`, request.url));
     }
-    // Consumer protected route requsted
-    } else if (protectedRoutes.consumer.includes(`/${tenant}`)) {
+    // Regular protected route requested.
+    } else if (route && protectedRoutes.regular.includes(route)) {
         if(!sessionUser){
             return NextResponse.redirect(new URL('/login/', request.url));
         }
-    // Shared protected route requested.
-    } else if (protectedRoutes.shared.includes(`/${tenant}`)) {
-        if(!sessionUser){
-            return NextResponse.redirect(new URL('/login/', request.url))
+    // Login page requested 
+    } else if (requestedPath === "/login") {
+        if (sessionUser) {
+            return NextResponse.redirect(new URL('/listings', request.url))
         }
-    // Home page requested. NEED FIXING LATER
-    } else if (requestedPath === "/" || requestedPath === "/login") {
-        if(sessionUser){
-            return NextResponse.redirect(new URL("/consumer/listings", request.url))
+    // Tenant login page requested
+    } else if (requestedPath === `/${tenant}` || requestedPath === `/${tenant}/login`){
+        if (sessionUser) {
+            return NextResponse.redirect(new URL(`/${tenant}/listings`, request.url))
         }
     }
     

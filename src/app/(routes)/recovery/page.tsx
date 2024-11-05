@@ -1,9 +1,9 @@
 'use client'
 import Link from "next/link"
 import { useRef } from "react"
-import { labelStyle } from "../Login"
-import { Button } from "../components/Button"
-import { getClient } from "../utils/supabase/browserClient"
+import { labelStyle } from "../../Login"
+import { Button } from "../../components/Button"
+import { getClient } from "../../utils/supabase/browserClient"
 import { useSearchParams } from "next/navigation"
 
 export const RecoveryPage = () => {

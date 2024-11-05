@@ -2,10 +2,10 @@
 
 import { useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { getClient } from "../utils/supabase/browserClient"
+import { getClient } from "@/app/utils/supabase/browserClient"
 import Link from "next/link"
 
-import { Button } from "../components/Button"
+import { Button } from "@/app/components/Button"
 
 interface LoginProps {
     isPasswordLogin: boolean,
