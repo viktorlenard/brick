@@ -9,11 +9,9 @@ type RecoveryProps = {
 
 export const RecoveryPage = ({ tenant }: RecoveryProps) => {
 
-    console.log(tenant)
     const emailInputRef = useRef<HTMLInputElement>(null)
     const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
     const url = tenant ? `/${tenant}/login` : '/login'
-    console.log(url)
 
     return(
         <div className='flex items-center justify-center flex-col min-h-dvh'>

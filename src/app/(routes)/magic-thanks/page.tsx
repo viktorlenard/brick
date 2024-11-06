@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Button } from '../components/Button'
+import { Button } from '@/app/components/Button';
 import { SearchParams } from 'next/dist/server/request/search-params'
 
 export const MagicLinkSuccessPage = async ( { searchParams } : { searchParams : SearchParams }) => {

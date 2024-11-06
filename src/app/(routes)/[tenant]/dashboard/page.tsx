@@ -1,4 +1,5 @@
 import { SearchParams } from "next/dist/server/request/search-params"
+import { NavLayout } from "@/app/components/NavLayout"
 
 type DashboardPageProps = {
     params: {
@@ -12,9 +13,9 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
     console.log(tenant)
 
     return(
-        <>
+        <NavLayout>
             <h1>This is the Dashboard of <span>{tenant}</span></h1>
-        </>
+        </NavLayout>
     )
 }
 

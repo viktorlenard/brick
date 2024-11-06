@@ -1,9 +1,9 @@
 import { PropsWithChildren } from "react"
 
 import { Nav } from "../components/Nav"
-import { UserName } from "./listings/UserName"
+import { UserName } from './UserName'
 
-export const DefaultLayout = (pageProps : PropsWithChildren) => {
+export const NavLayout = (pageProps : PropsWithChildren) => {
 
     return(
         <>
@@ -15,5 +15,3 @@ export const DefaultLayout = (pageProps : PropsWithChildren) => {
         </>
     )
 }
-
-export default DefaultLayout
