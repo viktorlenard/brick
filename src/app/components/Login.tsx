@@ -2,21 +2,21 @@
 
 import { useRef, useEffect } from "react"
 import { useRouter } from "next/navigation"
-import { getClient } from "./utils/supabase/browserClient"
+import { getClient } from "@/app/utils/supabase/browserClient"
 import Link from "next/link"
+import { TenantData } from "../types/tenant"
 
-import { Button } from "./components/Button"
+import { Button } from "@/app/components/Button"
 
 interface LoginProps {
     isPasswordLogin: boolean,
-    tenantName?: string
-    tenantId?: string
+    tenant: TenantData
 }
 
-export const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
+const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
 
 
-export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) => {
+export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
     
     const router = useRouter()
     const supabase = getClient()
@@ -30,22 +30,22 @@ export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) =
         const { data: { subscription }} = supabase.auth.onAuthStateChange(
             (event, session) => {
                 if(event === 'SIGNED_IN'){
-                    if(tenantId){
-                        router.push(`/${tenantId}/dashboard`);    
+                    if(tenant?.id){
+                        router.push(`/${tenant.id}/dashboard`);    
                     } else {
-                        router.push("/consumer/listings");
+                        router.push("/dashboard");
                     }
                 }
             })
         // Cleanup
         return () => subscription.unsubscribe()
-    }, [tenantId])
+    }, [tenant])
 
     return(
         <div className='flex items-center align-center flex-col'>
             <h1 className='font-black text-4xl leading-none'>BRICK:</h1>
-            {tenantName ? (
-                <h3 className='font-bold text-blue-800 leading-none'>{tenantName}</h3>    
+            {tenant?.name ? (
+                <h3 className='font-bold text-blue-800 leading-none'>{tenant?.name}</h3>    
             ) : (
                 <h3 className='font-bold text-accent leading-none'>in development</h3>
             )}
@@ -83,14 +83,14 @@ export const Login = ({ tenantId, isPasswordLogin, tenantName } : LoginProps ) =
                 </div>
                 <div className='mt-4 flex flex-col items-center'>
                     {!isPasswordLogin && (
-                        <Link href={{pathname: '/', query:{ magicLink: 'no' }}} 
+                        <Link href={tenant?.id ? { pathname: `/${tenant.id}/login`, query: { magicLink: 'no' } } : { pathname: '/login', query: { magicLink: 'no' } }} 
                         className='text-xs hover:underline' role='button' >Sign in with password</Link>
                     )}
                     {isPasswordLogin && (
-                        <Link href={{pathname: '/', query:{ magicLink: 'yes' }}} 
+                        <Link href={tenant?.id ? { pathname: `/${tenant.id}/login`, query: { magicLink: 'yes' } } : { pathname: '/login', query: { magicLink: 'yes' } }} 
                         className='text-xs hover:underline' role='button' >Sign in with Magic Link</Link>
                     )}
-                    <Link href={'/recovery'}  className='text-xs hover:underline mt-4' >Unable to sign in</Link>
+                    <Link href={tenant?.id ? { pathname: '/recovery', query: { tenant: tenant.id } } : { pathname: '/recovery'}} prefetch={false} className='text-xs hover:underline mt-4' >Unable to sign in</Link>
                 </div>
             </form>
         </div>

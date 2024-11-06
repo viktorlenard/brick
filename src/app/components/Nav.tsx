@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { getClient } from "../../utils/supabase/browserClient";
+import { getClient } from "../utils/supabase/browserClient";
 
-import { Button } from "../../components/Button";
+import { Button } from "./Button";
 
 export const Nav = () => {
 

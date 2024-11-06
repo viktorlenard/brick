@@ -1,18 +1,19 @@
 'use client'
 import Link from "next/link"
 import { useRef } from "react"
-import { labelStyle } from "../../Login"
 import { Button } from "../../components/Button"
-import { getClient } from "../../utils/supabase/browserClient"
-import { useSearchParams } from "next/navigation"
 
-export const RecoveryPage = () => {
+type RecoveryProps = {
+    tenant?: string 
+}
 
-    const params = useSearchParams()
+export const RecoveryPage = ({ tenant }: RecoveryProps) => {
+
+    console.log(tenant)
     const emailInputRef = useRef<HTMLInputElement>(null)
-    const tenantName = params.get('tenant')
-
-    const supabase = getClient()
+    const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
+    const url = tenant ? `/${tenant}/login` : '/login'
+    console.log(url)
 
     return(
         <div className='flex items-center justify-center flex-col min-h-dvh'>
@@ -34,7 +35,7 @@ export const RecoveryPage = () => {
                 </div>
             </form>
             <div className='mt-4 flex flex-col items-center'>
-                <Link href={{pathname:'/login', query:{ tenant: tenantName }}}  className='text-xs hover:underline mt-4' >Go back</Link>
+                <Link href={url} className='text-xs hover:underline mt-4'>Go back</Link>
             </div>
         </div>
     )

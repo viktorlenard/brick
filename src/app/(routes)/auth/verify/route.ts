@@ -29,7 +29,7 @@ export const GET = async (request : NextRequest) => {
         if(linkType === 'recovery'){
             return NextResponse.redirect(new URL('/account/change-password', request.url))
         } else if (linkType === 'login'){
-            return NextResponse.redirect(new URL('/consumer/listings', request.url));
+            return NextResponse.redirect(new URL('/dashboard/', request.url));
         }
     }
 }

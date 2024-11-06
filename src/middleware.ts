@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
         '\n---------------------------------------------')
 
     // Tenant route requested.
-    if (tenant){
+    if (tenant && requestedPath !== `/${tenant}/login`){
         if (!sessionUser) {
             return NextResponse.redirect(new URL(`/${tenant}/login`, request.url));
     }
@@ -37,12 +37,12 @@ export async function middleware(request: NextRequest) {
     // Login page requested 
     } else if (requestedPath === "/login") {
         if (sessionUser) {
-            return NextResponse.redirect(new URL('/listings', request.url))
+            return NextResponse.redirect(new URL('/dashboard', request.url))
         }
     // Tenant login page requested
     } else if (requestedPath === `/${tenant}` || requestedPath === `/${tenant}/login`){
         if (sessionUser) {
-            return NextResponse.redirect(new URL(`/${tenant}/listings`, request.url))
+            return NextResponse.redirect(new URL(`/${tenant}/dashboard`, request.url))
         }
     }
     
