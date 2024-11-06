@@ -3,7 +3,7 @@ import { UserName } from './UserName'
 import { TenantData } from "../types/tenant"
 
 interface TopBarProps {
-    tenant?: TenantData
+    tenant?: string
 }
 export const NavBar = ({ tenant } : TopBarProps) => {
 

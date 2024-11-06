@@ -1,10 +1,10 @@
-import { TopBar } from "@/app/components/NavBar"
+import { NavBar } from "@/app/components/NavBar"
 
 export const DashboardPage = () => {
 
     return(
         <>
-            <TopBar />
+            <NavBar />
             Regular Dashboard Page
         </>
     )

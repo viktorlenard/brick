@@ -1,4 +1,5 @@
 import { NavBar } from "@/app/components/NavBar"
+import { TenantData } from "@/app/types/tenant"
 
 type DashboardPageProps = {
     params: {
@@ -13,7 +14,7 @@ const DashboardPage = async ({ params }: DashboardPageProps) => {
 
     return(
         <>  
-            <NavBar />
+            <NavBar tenant={tenant}/>
             <h1>This is the Dashboard of <span>{tenant}</span></h1>
         </>
     )
