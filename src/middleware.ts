@@ -50,6 +50,10 @@ export async function middleware(request: NextRequest) {
         } else if (sessionUser && sessionUser.app_metadata?.user_type === 'consumer') {
             return NextResponse.redirect(new URL('/dashboard', request.url))
         }
+    // Change password requested.
+    } else if (route && protectedRoutes.shared.includes(route)){
+        if(!sessionUser){
+            return NextResponse.redirect(new URL('/login/', request.url));}
     }
     
     return response.value

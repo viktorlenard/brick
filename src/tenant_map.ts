@@ -1,7 +1,13 @@
 import { TenantConfig, ValidRoute, ProtectedRoutes } from "./app/utils/routing-helpers";
 
-const regularProtectedRoutes: ValidRoute[] = ['/dashboard', '/listings', ]
+const regularProtectedRoutes: ValidRoute[] = [
+    '/account',
+    '/dashboard', 
+    '/listings',]
 
+const sharedProtectedRoutes: ValidRoute[] = [
+    '/change-password'
+]
 // Manually add tenants to match DB.
 export const TENANT_MAP: TenantConfig[] = [
     { domain: 'foxtons.com', tenantId: 'foxtons' },
@@ -15,4 +21,5 @@ const tenantRoutes: ValidRoute[] = TENANT_MAP.map(config => `/${config.tenantId}
 export const protectedRoutes: ProtectedRoutes = {
     regular: regularProtectedRoutes,
     business: tenantRoutes,
+    shared: sharedProtectedRoutes
 };

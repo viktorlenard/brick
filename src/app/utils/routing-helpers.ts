@@ -12,6 +12,7 @@ export type ValidRoute = `/${string}`
 export type ProtectedRoutes = {
     regular: ValidRoute[];
     business: ValidRoute[];
+    shared: ValidRoute[];
 };
 
 // Check whether requested path is for a tenant. Returns boolean. Used for handleRouting below.

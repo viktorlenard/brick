@@ -24,8 +24,6 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
     const emailInputRef = useRef<HTMLInputElement>(null);
     const passwordInputRef = useRef<HTMLInputElement>(null);
 
-    // Subscribe to authStateChange with useEffect. 
-    // If the user is signed out, router.push("/listings"). Happens when using OTP
     useEffect(() => {
         const { data: { subscription }} = supabase.auth.onAuthStateChange(
             (event, session) => {
@@ -37,13 +35,14 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                             router.push('/dashboard')
                         } else if (!session.user.app_metadata.tenants?.includes(tenant.id)){
                             supabase.auth.signOut()
+                            // IMPROVE!
                             alert(`Unable to sign in. Please reach out to ${tenant.name}'s administrators.`)
                         }
                     } else if (session){
                         if(session.user.app_metadata.user_type === 'consumer'){
                             router.push("/dashboard");
                         } else if((session.user.app_metadata.user_type === 'business')){
-                            // DO!
+                            // IMPROVE!
                             alert("This is a business account. Please sign-in via company portal.")
                         }
                     }
