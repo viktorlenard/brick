@@ -22,8 +22,9 @@ export const POST = async (request : NextRequest, params? : SearchParams) => {
 
     const { data, error } = await supabase.auth.signInWithPassword({ email, password })
     const userData = data?.user
+
     if(error || !userData || !userData.app_metadata?.user_type) {
-        // await supabase.auth.signOut()
+        await supabase.auth.signOut()
         return NextResponse.redirect(
             new URL("/error?type=login-failed", request.url),
             { status: 302 })

@@ -35,13 +35,16 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                             router.push(`/${tenant.id}/dashboard`);     
                         } else if(session.user.app_metadata.user_type === 'consumer'){
                             router.push('/dashboard')
+                        } else if (!session.user.app_metadata.tenants?.includes(tenant.id)){
+                            supabase.auth.signOut()
+                            alert(`Unable to sign in. Please reach out to ${tenant.name}'s administrators.`)
                         }
                     } else if (session){
                         if(session.user.app_metadata.user_type === 'consumer'){
                             router.push("/dashboard");
                         } else if((session.user.app_metadata.user_type === 'business')){
                             // DO!
-                            alert("Business account! Head to tenant sign-in.")
+                            alert("This is a business account. Please sign-in via company portal.")
                         }
                     }
                 }
@@ -59,7 +62,9 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                 <h3 className='font-bold text-accent leading-none'>in development</h3>
             )}
             <form className='flex flex-col items-center' 
-                action={isPasswordLogin ? (tenant ? `/auth/password-login?tenant=${tenant.id}` : '/auth/password-login/') : '/auth/magic-link'} method='POST' 
+                action={isPasswordLogin ? 
+                    (tenant ? `/auth/password-login?tenant=${tenant.id}` : '/auth/password-login/') : 
+                    (tenant? `/auth/magic-link?tenant=${tenant.id}` : '/auth/magic-link')} method='POST' 
                 onSubmit={(e) => {isPasswordLogin && e.preventDefault();
                     const email = emailInputRef.current?.value ?? '';
                     const password = passwordInputRef.current?.value ?? ''; 

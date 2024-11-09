@@ -1,6 +1,6 @@
 import { TenantConfig, ValidRoute, ProtectedRoutes } from "./app/utils/routing-helpers";
 
-const regularProtectedRoutes: ValidRoute[] = ['/consumer']
+const regularProtectedRoutes: ValidRoute[] = ['/dashboard', '/listings', ]
 
 // Manually add tenants to match DB.
 export const TENANT_MAP: TenantConfig[] = [

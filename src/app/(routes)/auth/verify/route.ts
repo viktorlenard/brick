@@ -16,10 +16,12 @@ export const GET = async (request : NextRequest) => {
         )
     }
 
-    const { error } = await supabase.auth.verifyOtp({
+    const { data, error } = await supabase.auth.verifyOtp({
         type: 'magiclink',
         token_hash: hashed_token
     })
+
+    const user = data.user
 
     if (error) {
         return NextResponse.redirect(
@@ -28,8 +30,11 @@ export const GET = async (request : NextRequest) => {
     } else {
         if(linkType === 'recovery'){
             return NextResponse.redirect(new URL('/account/change-password', request.url))
-        } else if (linkType === 'login'){
+        } else if (linkType === 'login' && (user && user.app_metadata.user_type === 'consumer')){
             return NextResponse.redirect(new URL('/dashboard/', request.url));
+        } else if (linkType === 'login' && (user && user.app_metadata.user_type === 'business')) {
+            // DO: BUSINESS USER MAGIC LINK WILL BE REDIRECTED TO /login
+            return NextResponse.redirect(new URL('/login', request.url));
         }
     }
 }

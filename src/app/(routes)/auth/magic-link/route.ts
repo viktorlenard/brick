@@ -9,11 +9,14 @@ const isValidLinkType = (value: any): value is LinkType => {
     return value === 'recovery' || value === 'login'
 }
 
-export const POST = async (request : NextRequest) => {
+export const POST = async (request : NextRequest, params? : SearchParams) => {
     
     const formData = await request.formData()
     const email = formData.get("email")
     const linkType = formData.get('type')
+    
+    const url = new URL(request.url);
+    const tenant = url.searchParams.get('tenant');
 
     const supabaseAdmin = getAdminClient()
 
@@ -30,7 +33,9 @@ export const POST = async (request : NextRequest) => {
         type: "magiclink"
     })
 
-    if(error) {
+    const user = linkData.user;
+
+    if(error || (tenant && user && !user.app_metadata?.tenants.includes(tenant))) {
         return NextResponse.redirect(
             new URL("/error?type=magiclink", request.url),
             { status: 302 }

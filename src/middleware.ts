@@ -26,23 +26,29 @@ export async function middleware(request: NextRequest) {
 
     // Tenant route requested.
     if (tenant && requestedPath !== `/${tenant}/login`){
-        if (!sessionUser) {
+        if(sessionUser&& sessionUser.app_metadata?.user_type === 'consumer'){
+            return NextResponse.redirect(new URL('/dashboard', request.url))
+        } else if (!sessionUser || !sessionUser.app_metadata?.tenants.includes(tenant)) {
             return NextResponse.redirect(new URL(`/${tenant}/login`, request.url));
     }
     // Regular protected route requested.
     } else if (route && protectedRoutes.regular.includes(route)) {
         if(!sessionUser){
             return NextResponse.redirect(new URL('/login/', request.url));
+        } else if (sessionUser && sessionUser.app_metadata?.user_type !== 'consumer'){
+            return NextResponse.rewrite(new URL("/not-found", request.url));
         }
     // Login page requested 
     } else if (requestedPath === "/login") {
-        if (sessionUser) {
+        if (sessionUser && sessionUser.app_metadata?.user_type === 'consumer') {
             return NextResponse.redirect(new URL('/dashboard', request.url))
-        }
+        } 
     // Tenant login page requested
     } else if (requestedPath === `/${tenant}` || requestedPath === `/${tenant}/login`){
-        if (sessionUser) {
+        if (sessionUser && sessionUser.app_metadata?.tenants.includes(tenant)) {
             return NextResponse.redirect(new URL(`/${tenant}/dashboard`, request.url))
+        } else if (sessionUser && sessionUser.app_metadata?.user_type === 'consumer') {
+            return NextResponse.redirect(new URL('/dashboard', request.url))
         }
     }
     
