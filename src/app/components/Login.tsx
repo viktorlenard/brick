@@ -30,10 +30,19 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
         const { data: { subscription }} = supabase.auth.onAuthStateChange(
             (event, session) => {
                 if(event === 'SIGNED_IN'){
-                    if(tenant?.id){
-                        router.push(`/${tenant.id}/dashboard`);    
-                    } else {
-                        router.push("/dashboard");
+                    if(tenant?.id && session){
+                        if(session.user.app_metadata.tenants?.includes(tenant.id)){
+                            router.push(`/${tenant.id}/dashboard`);     
+                        } else if(session.user.app_metadata.user_type === 'consumer'){
+                            router.push('/dashboard')
+                        }
+                    } else if (session){
+                        if(session.user.app_metadata.user_type === 'consumer'){
+                            router.push("/dashboard");
+                        } else if((session.user.app_metadata.user_type === 'business')){
+                            // DO!
+                            alert("Business account! Head to tenant sign-in.")
+                        }
                     }
                 }
             })
@@ -50,7 +59,7 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                 <h3 className='font-bold text-accent leading-none'>in development</h3>
             )}
             <form className='flex flex-col items-center' 
-                action={isPasswordLogin ? '/auth/password-login/' : '/auth/magic-link'} method='POST' 
+                action={isPasswordLogin ? (tenant ? `/auth/password-login?tenant=${tenant.id}` : '/auth/password-login/') : '/auth/magic-link'} method='POST' 
                 onSubmit={(e) => {isPasswordLogin && e.preventDefault();
                     const email = emailInputRef.current?.value ?? '';
                     const password = passwordInputRef.current?.value ?? ''; 
