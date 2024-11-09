@@ -1,8 +1,10 @@
 'use client'
 import { getClient } from "@/app/utils/supabase/browserClient"
-import { useState, useRef } from "react"
+import { useState, useRef, useEffect } from "react"
 import { Button } from "@/app/components/Button"
 import Link from "next/link"
+import { ClientBackButton } from "@/app/components/ClientBackButton"
+// import { useRouter } from "next/router"
 
 export const ChangePasswordPage = () => {
 
@@ -17,7 +19,7 @@ export const ChangePasswordPage = () => {
             {passwordChanged ? (
                 <div className='flex flex-col items-center justify-center['>
                     <h3 className='font-bold mb-8'>Password updated successfully!</h3>
-                    <Link className='text-xs hover:underline' role='button' href={'/consumer/listings'}>Back to listings</Link>
+                    <ClientBackButton />
                 </div>
             ) : (
                 <form onSubmit={

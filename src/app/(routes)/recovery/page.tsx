@@ -2,16 +2,14 @@
 import Link from "next/link"
 import { useRef } from "react"
 import { Button } from "../../components/Button"
+import { useSearchParams } from "next/navigation"
 
-type RecoveryProps = {
-    tenant?: string 
-}
-
-export const RecoveryPage = ({ tenant }: RecoveryProps) => {
+export const RecoveryPage = () => {
 
     const emailInputRef = useRef<HTMLInputElement>(null)
     const labelStyle = 'flex flex-col items-left font-mono font-bold text-sm mt-4'
-    const url = tenant ? `/${tenant}/login` : '/login'
+    const searchParams = useSearchParams()
+    const tenant = searchParams.get('tenant')
 
     return(
         <div className='flex items-center justify-center flex-col min-h-dvh'>
@@ -33,7 +31,7 @@ export const RecoveryPage = ({ tenant }: RecoveryProps) => {
                 </div>
             </form>
             <div className='mt-4 flex flex-col items-center'>
-                <Link href={url} className='text-xs hover:underline mt-4'>Go back</Link>
+                <Link prefetch={false} href={(tenant ? `/${tenant}/login` : '/login')} className='text-xs hover:underline mt-4'>Go back</Link>
             </div>
         </div>
     )

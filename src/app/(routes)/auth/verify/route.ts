@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getUtilClient } from "@/app/utils/supabase/cookiesUtilClient"
-import { link } from "fs"
+import { TENANT_MAP } from "@/tenant_map"
 
 export const GET = async (request : NextRequest) => {
 
@@ -22,6 +22,10 @@ export const GET = async (request : NextRequest) => {
     })
 
     const user = data.user
+    const email = data.user?.email
+    const domain = email?.split('@')[1];
+    const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
+    const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
 
     if (error) {
         return NextResponse.redirect(
@@ -33,7 +37,9 @@ export const GET = async (request : NextRequest) => {
         } else if (linkType === 'login' && (user && user.app_metadata.user_type === 'consumer')){
             return NextResponse.redirect(new URL('/dashboard/', request.url));
         } else if (linkType === 'login' && (user && user.app_metadata.user_type === 'business')) {
-            // DO: BUSINESS USER MAGIC LINK WILL BE REDIRECTED TO /login
+            if(tenantId){
+                return NextResponse.redirect(new URL(`/${tenantId}/login`, request.url));    
+            }
             return NextResponse.redirect(new URL('/login', request.url));
         }
     }

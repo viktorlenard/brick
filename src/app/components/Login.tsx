@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation"
 import { getClient } from "@/app/utils/supabase/browserClient"
 import Link from "next/link"
 import { TenantData } from "../types/tenant"
+import { TENANT_MAP } from "@/tenant_map"
 
 import { Button } from "@/app/components/Button"
 
@@ -34,16 +35,35 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                         } else if(session.user.app_metadata.user_type === 'consumer'){
                             router.push('/dashboard')
                         } else if (!session.user.app_metadata.tenants?.includes(tenant.id)){
-                            supabase.auth.signOut()
-                            // IMPROVE!
-                            alert(`Unable to sign in. Please reach out to ${tenant.name}'s administrators.`)
+                            const email = emailInputRef.current?.value
+                            const domain = email?.split('@')[1];
+                            const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
+                            const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
+                            if(tenantId){
+                                router.push(`/${tenantId}/dashboard`); 
+                            } else {
+                                // This should never happen, unless TENNAT_MAP is not kept up to date.
+                                supabase.auth.signOut()
+                                console.error('tenantId not found in TENANT_MAP.')
+                                alert(`Unable to sign in. Please reach out to ${tenant.name}'s administrators.`)
+                            }
                         }
                     } else if (session){
                         if(session.user.app_metadata.user_type === 'consumer'){
                             router.push("/dashboard");
                         } else if((session.user.app_metadata.user_type === 'business')){
-                            // IMPROVE!
-                            alert("This is a business account. Please sign-in via company portal.")
+                            const email = emailInputRef.current?.value
+                            const domain = email?.split('@')[1];
+                            const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
+                            const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
+                            if(tenantId){
+                                router.push(`/${tenantId}/dashboard`);  
+                            } else {
+                                // This should never happen, unless TENNAT_MAP is not kept up to date.
+                                supabase.auth.signOut()
+                                console.error('tenantId not found in TENANT_MAP.')
+                                alert('Failed to sign in with business account. Please try again on company login.')
+                            }
                         }
                     }
                 }
