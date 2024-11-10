@@ -25,7 +25,7 @@ export async function middleware(request: NextRequest) {
         '\n---------------------------------------------')
 
     // Tenant route requested.
-    if (tenant && requestedPath !== `/${tenant}/login`){
+    if (tenant && requestedPath !== `/${tenant}/login` && requestedPath !== `/${tenant}/register`){
         if(sessionUser&& sessionUser.app_metadata?.user_type === 'consumer'){
             return NextResponse.redirect(new URL('/dashboard', request.url))
         } else if (!sessionUser || !sessionUser.app_metadata?.tenants.includes(tenant)) {
@@ -50,7 +50,7 @@ export async function middleware(request: NextRequest) {
         } else if (sessionUser && sessionUser.app_metadata?.user_type === 'consumer') {
             return NextResponse.redirect(new URL('/dashboard', request.url))
         }
-    // Change password requested.
+    // Shared protected route requested
     } else if (route && protectedRoutes.shared.includes(route)){
         if(!sessionUser){
             return NextResponse.redirect(new URL('/login/', request.url));}

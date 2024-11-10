@@ -1,4 +1,4 @@
-import { Login } from "./Login";
+import { Login } from "./(routes)/login";
 import { SearchParams } from "next/dist/server/request/search-params";
 import { Button } from "./components/Button";
 

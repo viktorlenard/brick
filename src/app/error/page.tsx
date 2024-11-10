@@ -3,14 +3,20 @@ import Link from "next/link"
 
 export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams }) => {
 
-    const { type } = await searchParams;
+    const { type, email, tenantId, tenantName } = await searchParams;
     
     const knownErrors = [
         'login-failed',
         'invalid-input',
         'magiclink',
         'invalid_token',
-        'invalid_magiclink'
+        'invalid_magiclink',
+        'register_mail_mismatch',
+        'registration_failed',
+        'business_user_reg',
+        'register_mail_exists', // DO
+        'register_unknown' // DO
+
     ]
 
     return(
@@ -43,6 +49,23 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
                         <div className='font-bold'>
                             <p className='font-bold'>Invalid magic link.</p>
                             <p>Please request a new one.</p>
+                        </div>
+                    )}
+                    {type === "register_mail_mismatch" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>You cannot register an account there with {email}.</p>
+                        </div>
+                    )}
+                    {type === "registration_failed" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Couldn't complete registration.</p>
+                            <p className='font-bold'>Please reach out to support.</p>
+                        </div>
+                    )}
+                    {type === "business_user_reg" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>This email belongs to {tenantName}.</p>
+                            <p className='font-bold'>Please head to {tenantId}/register.</p>
                         </div>
                     )}
                     {type && typeof type === 'string' && !knownErrors.includes(type) && (

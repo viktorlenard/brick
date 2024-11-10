@@ -124,6 +124,7 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                         className='text-xs hover:underline' role='button' >Sign in with Magic Link</Link>
                     )}
                     <Link href={tenant?.id ? { pathname: '/recovery', query: { tenant: tenant.id } } : { pathname: '/recovery'}} prefetch={false} className='text-xs hover:underline mt-4' >Unable to sign in</Link>
+                    <Link href={tenant?.id ? `/${tenant.id}/register` : '/register'} prefetch={false} className='text-xs hover:underline mt-4'>Create account</Link>
                 </div>
             </form>
         </div>
