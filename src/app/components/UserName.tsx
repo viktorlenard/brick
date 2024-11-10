@@ -2,17 +2,28 @@ import { getUtilClient } from "../utils/supabase/cookiesUtilClient"
 import { PropsWithChildren } from "react"
 import { TenantData } from "../types/tenant"
 interface UserNameProps {
-    userName: string,
     tenant?: string
 }
 
-export const UserName = async ({ userName, tenant } : UserNameProps) => {
+export const UserName = async ({ tenant } : UserNameProps) => {
 
     let tenantName = undefined
+    let userName = undefined
     const supabase = await getUtilClient()
+    const user = await supabase.auth.getUser()
+    const sessionUserId = user.data?.user?.id
+    if(sessionUserId){
+        const { data, error } = await supabase.from('service_users').select("full_name").eq('supabase_user', sessionUserId).single()
+        if(error){
+            console.log(error)
+        }
+        userName = data?.full_name
+    }
     if(tenant){
         const { data, error } = await supabase.from('tenants').select("name").eq('id', tenant).single()
-        console.log(data)
+        if(error){
+            console.log(error)
+        }
         if (data){
             tenantName = data.name
         }

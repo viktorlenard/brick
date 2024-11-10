@@ -92,7 +92,6 @@ export const POST = async (request : NextRequest, params? : SearchParams) => {
             .eq("id", tenant)
             .eq("domain", emailHost)
             .single();
-            console.log(tenantData, tenantError)
         if (!tenantData) {
             // No data was returned. Either incorrect tenant, or consumer reg attempt at tenant page. No good.
             return NextResponse.redirect(
@@ -123,6 +122,7 @@ export const POST = async (request : NextRequest, params? : SearchParams) => {
                 .insert({
                     full_name: name,
                     supabase_user: userData.user.id,
+                    user_type: userType
                 })
                 .select()
                 .single()
