@@ -1,13 +1,18 @@
 import { NextRequest, NextResponse } from "next/server"
 import { getUtilClient } from "@/app/utils/supabase/cookiesUtilClient"
 import { TENANT_MAP } from "@/tenant_map"
+import { LinkType } from "@/app/utils/sendOTPLink"
 
 export const GET = async (request : NextRequest) => {
 
     const { searchParams } = new URL(request.url)
     const hashed_token = searchParams.get('hashed_token')
-    const linkType = searchParams.get('type')
+    const type = searchParams.get('type') as LinkType
 
+    // FOR NOW ONLY THESE LINKTYPES ARE SUPPORTED.
+    if (type !== 'magiclink' && type !== 'signup' && type !== 'recovery') {
+        return NextResponse.redirect(new URL('/error?type=invalid_magiclink', request.url));
+    }
     const supabase = await getUtilClient()
 
     if(!hashed_token){
@@ -17,7 +22,7 @@ export const GET = async (request : NextRequest) => {
     }
 
     const { data, error } = await supabase.auth.verifyOtp({
-        type: 'magiclink',
+        type: type,
         token_hash: hashed_token
     })
 
@@ -32,11 +37,11 @@ export const GET = async (request : NextRequest) => {
             new URL("/error?type=invalid_magiclink", request.url)
         );
     } else {
-        if(linkType === 'recovery'){
+        if(type === 'recovery'){
             return NextResponse.redirect(new URL('/change-password', request.url))
-        } else if (linkType === 'login' && (user && user.app_metadata.user_type === 'consumer')){
+        } else if ((type === 'magiclink' || 'signup ') && (user && user.app_metadata.user_type === 'consumer')){
             return NextResponse.redirect(new URL('/dashboard/', request.url));
-        } else if (linkType === 'login' && (user && user.app_metadata.user_type === 'business')) {
+        } else if ((type === 'magiclink' || 'signup ') && (user && user.app_metadata.user_type === 'business')) {
             if(tenantId){
                 return NextResponse.redirect(new URL(`/${tenantId}/login`, request.url));    
             }

@@ -14,8 +14,8 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
         'register_mail_mismatch',
         'registration_failed',
         'business_user_reg',
-        'register_mail_exists', // DO
-        'register_unknown' // DO
+        'register_mail_exists',
+        'register_unknown'
 
     ]
 
@@ -66,6 +66,17 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
                         <div className='font-bold'>
                             <p className='font-bold'>This email belongs to {tenantName}.</p>
                             <p className='font-bold'>Please head to {tenantId}/register.</p>
+                        </div>
+                    )}
+                    {type === "register_mail_exists" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Email already in use.</p>
+                        </div>
+                    )}
+                    {type === "register_unknown" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Unkown error happened during registration.</p>
+                            <p className='font-bold'>Please try again later, or reach out to support.</p>
                         </div>
                     )}
                     {type && typeof type === 'string' && !knownErrors.includes(type) && (

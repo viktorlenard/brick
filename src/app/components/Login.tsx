@@ -42,10 +42,8 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
                             if(tenantId){
                                 router.push(`/${tenantId}/dashboard`); 
                             } else {
-                                // This should never happen, unless TENNAT_MAP is not kept up to date.
                                 supabase.auth.signOut()
-                                console.error('tenantId not found in TENANT_MAP.')
-                                alert(`Unable to sign in. Please reach out to ${tenant.name}'s administrators.`)
+                                console.error(`User received session as a business user, but domain not found in TENANT_MAP! SESSION DELETED.`)
                             }
                         }
                     } else if (session){

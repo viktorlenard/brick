@@ -2,6 +2,7 @@ import { getReqResClient } from "./app/utils/supabase/reqResClient";
 import { type NextRequest, NextResponse } from "next/server";
 import { protectedRoutes } from "./tenant_map";
 import { handleRouting } from "./app/utils/routing-helpers";
+import { TENANT_MAP } from "./tenant_map";
 
 export async function middleware(request: NextRequest) {
     
@@ -26,11 +27,21 @@ export async function middleware(request: NextRequest) {
 
     // Tenant route requested.
     if (tenant && requestedPath !== `/${tenant}/login` && requestedPath !== `/${tenant}/register`){
-        if(sessionUser&& sessionUser.app_metadata?.user_type === 'consumer'){
+        if(sessionUser && sessionUser.app_metadata?.user_type === 'consumer'){
             return NextResponse.redirect(new URL('/dashboard', request.url))
-        } else if (!sessionUser || !sessionUser.app_metadata?.tenants.includes(tenant)) {
+        } else if (!sessionUser) {
             return NextResponse.redirect(new URL(`/${tenant}/login`, request.url));
-    }
+        } else if (!sessionUser.app_metadata?.tenants.includes(tenant)) {
+            const email = sessionUser.email
+            const domain = email?.split('@')[1];
+            const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
+            const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
+            if (tenantId){
+                return NextResponse.redirect(new URL(`/${tenantId}/login`, request.url));
+            } else {
+                return NextResponse.redirect(new URL(`/${tenant}/login`, request.url));
+            }
+        }
     // Regular protected route requested.
     } else if (route && protectedRoutes.regular.includes(route)) {
         if(!sessionUser){
