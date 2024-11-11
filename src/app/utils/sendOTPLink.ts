@@ -29,7 +29,7 @@ export const sendOTPLink = async ({ email, type, newEmail, tenant, request }: Ot
     
     const user = linkData.user;
 
-    if (tenant && !user.app_metadata?.tenants.includes(tenant)) {
+    if (tenant && !user.app_metadata?.tenants.includes(tenant) && user.app_metadata?.user_type !== 'consumer') {
         console.log('ERROR CODE 2')
         return false;
     }
@@ -40,8 +40,14 @@ export const sendOTPLink = async ({ email, type, newEmail, tenant, request }: Ot
     }
 
     const { hashed_token } = linkData.properties;
-    const constructedLink = new URL(
-        `/auth/verify?hashed_token=${hashed_token}&type=${linkType}`, request.url);
+    let constructedLink : URL
+    if(tenant){
+        constructedLink = new URL(
+            `/auth/verify?hashed_token=${hashed_token}&type=${linkType}&tenant=${tenant}`, request.url);
+    } else {
+        constructedLink = new URL(
+            `/auth/verify?hashed_token=${hashed_token}&type=${linkType}`, request.url);
+    }
 
     const transporter = nodemailer.createTransport({
         host: "localhost",

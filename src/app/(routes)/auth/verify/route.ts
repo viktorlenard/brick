@@ -8,6 +8,7 @@ export const GET = async (request : NextRequest) => {
     const { searchParams } = new URL(request.url)
     const hashed_token = searchParams.get('hashed_token')
     const type = searchParams.get('type') as LinkType
+    const tenant = searchParams.get('tenant')
 
     // FOR NOW ONLY THESE LINKTYPES ARE SUPPORTED.
     if (type !== 'magiclink' && type !== 'signup' && type !== 'recovery') {
@@ -41,10 +42,20 @@ export const GET = async (request : NextRequest) => {
             return NextResponse.redirect(new URL('/change-password', request.url))
         } else if ((type === 'magiclink' || 'signup ') && (user && user.app_metadata.user_type === 'consumer')){
             return NextResponse.redirect(new URL('/dashboard/', request.url));
-        } else if ((type === 'magiclink' || 'signup ') && (user && user.app_metadata.user_type === 'business')) {
-            if(tenantId){
+        } else if ((type === 'signup') && (user && user.app_metadata.user_type === 'business')) {
+            if(tenantId === tenant){
                 return NextResponse.redirect(new URL(`/${tenantId}/login`, request.url));    
             }
+            return NextResponse.redirect(new URL('/login', request.url));
+        } else if (type === 'magiclink' && user && user.app_metadata.user_type === 'business'){
+            // Feature needs implementing.
+            console.log("BUSINESS MAGIC LINK", tenant, tenantId )
+            if(tenantId === tenant){
+                return NextResponse.redirect(new URL(`/${tenantId}/dashboard`, request.url));    
+            } else if (TENANT_MAP.some(config => config.tenantId === tenant)){
+                return NextResponse.redirect(new URL(`/${tenant}/dashboard`, request.url));
+            }
+            console.log("BUSINESS MAGIC LINK FAILED")
             return NextResponse.redirect(new URL('/login', request.url));
         }
     }

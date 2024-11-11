@@ -46,7 +46,18 @@ export async function middleware(request: NextRequest) {
     } else if (route && protectedRoutes.regular.includes(route)) {
         if(!sessionUser){
             return NextResponse.redirect(new URL('/login/', request.url));
-        } else if (sessionUser && sessionUser.app_metadata?.user_type !== 'consumer'){
+        } else if (sessionUser && sessionUser.app_metadata?.user_type !== 'consumer' ){
+            if(sessionUser.app_metadata?.user_type === 'business'){
+                const email = sessionUser.email
+                const domain = email?.split('@')[1];
+                const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
+                const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
+                if(tenantId){
+                    return NextResponse.redirect(new URL(`/${tenantId}/dashboard`, request.url))
+                } else {
+                    return NextResponse.rewrite(new URL("/not-found", request.url));
+                }
+            }
             return NextResponse.rewrite(new URL("/not-found", request.url));
         }
     // Login page requested 
