@@ -1,12 +1,12 @@
 import { SearchParams } from "next/dist/server/request/search-params"
 import { NextRequest, NextResponse } from "next/server"
 import { getAdminClient } from "@/app/utils/supabase/adminClient"
-import { UserType } from "@/app/types/tenant"
 import { sendOTPLink, LinkType, OtpProps } from "@/app/utils/sendOTPLink"
 
 const isNonEmptyString = (value : string) =>
     typeof value === "string" && value.trim().length > 0;
 const emailRegex = /^\S+@\S+$/;
+type UserType = 'consumer' | 'business'
 
 export const POST = async (request : NextRequest, params? : SearchParams) => {
 
@@ -18,7 +18,7 @@ export const POST = async (request : NextRequest, params? : SearchParams) => {
     const tenant = url.searchParams.get('tenant');
     const type = 'signup' as LinkType
     const [ , emailHost] = email.split('@');
-    const safeEmailString = encodeURIComponent(email);  // domain === emailHost 
+    const safeEmailString = encodeURIComponent(email);  // domain === emailHost
 
     if (
         !isNonEmptyString(name) ||

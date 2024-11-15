@@ -1,6 +1,6 @@
-import { Login } from "./(routes)/login";
 import { SearchParams } from "next/dist/server/request/search-params";
 import { Button } from "./components/Button";
+import { UserTypes } from "./utils/user-helpers";
 
 export default async function Home({ searchParams }: { searchParams: SearchParams }) {
   

@@ -11,7 +11,7 @@ export const NavBar = ({ tenant } : TopBarProps) => {
         <>
             <section>
                 <Nav />
-                <UserName userName="Viktor" tenant={tenant}/>
+                <UserName tenant={tenant}/>
             </section>
         </>
     )

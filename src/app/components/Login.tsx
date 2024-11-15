@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation"
 import { getClient } from "@/app/utils/supabase/browserClient"
 import Link from "next/link"
 import { TenantData } from "../types/tenant"
-import { TENANT_MAP } from "@/tenant_map"
+import { getUserConfig } from "../utils/user-helpers"
+import { UserTypes } from "../utils/user-helpers"
 
 import { Button } from "@/app/components/Button"
 
@@ -28,40 +29,27 @@ export const Login = ({ isPasswordLogin, tenant } : LoginProps ) => {
     useEffect(() => {
         const { data: { subscription }} = supabase.auth.onAuthStateChange(
             (event, session) => {
-                if(event === 'SIGNED_IN'){
-                    if(tenant?.id && session){
-                        if(session.user.app_metadata.tenants?.includes(tenant.id)){
-                            router.push(`/${tenant.id}/dashboard`);     
-                        } else if(session.user.app_metadata.user_type === 'consumer'){
+                if(event === 'SIGNED_IN' && session){
+                    const user = getUserConfig(session.user)
+                    if(tenant?.id && user){
+                        if(user.type === UserTypes.Consumer){
                             router.push('/dashboard')
-                        } else if (!session.user.app_metadata.tenants?.includes(tenant.id)){
-                            const email = emailInputRef.current?.value
-                            const domain = email?.split('@')[1];
-                            const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
-                            const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
-                            if(tenantId){
-                                router.push(`/${tenantId}/dashboard`); 
-                            } else {
-                                supabase.auth.signOut()
-                                console.error(`User received session as a business user, but domain not found in TENANT_MAP! SESSION DELETED.`)
-                            }
+                        } else if (user.tenants?.primary === tenant.id || user.tenants?.secondary.includes(tenant.id)){
+                            router.push(`/${tenant.id}/dashboard`);     
+                        } else if (user.type === UserTypes.Business) {
+                            router.push(`/${user.tenants?.primary}/dashboard`); 
+                        } else {
+                            supabase.auth.signOut()
+                            console.error('SESSION DELETED. SOMETHING FUCKED UP.')
                         }
                     } else if (session){
-                        if(session.user.app_metadata.user_type === 'consumer'){
+                        if(user.type === UserTypes.Consumer){
                             router.push("/dashboard");
-                        } else if((session.user.app_metadata.user_type === 'business')){
-                            const email = emailInputRef.current?.value
-                            const domain = email?.split('@')[1];
-                            const tenantConfig = TENANT_MAP.find(config => config.domain === domain);
-                            const tenantId = tenantConfig ? tenantConfig.tenantId : undefined;
-                            if(tenantId){
-                                router.push(`/${tenantId}/dashboard`);  
-                            } else {
-                                // This should never happen, unless TENNAT_MAP is not kept up to date.
-                                supabase.auth.signOut()
-                                console.error('tenantId not found in TENANT_MAP.')
-                                alert('Failed to sign in with business account. Please try again on company login.')
-                            }
+                        } else if (user.type === UserTypes.Business) {
+                            router.push(`/${user.tenants?.primary}/dashboard`); 
+                        } else {
+                            supabase.auth.signOut()
+                            console.error('SESSION DELETED. SOMETHING FUCKED UP.')
                         }
                     }
                 }

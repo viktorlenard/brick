@@ -1,6 +1,6 @@
 import { TenantConfig, ValidRoute, ProtectedRoutes } from "./app/utils/routing-helpers";
 
-const regularProtectedRoutes: ValidRoute[] = [
+const consumerProtectedRoutes: ValidRoute[] = [
     '/account',
     '/dashboard', 
     '/listings',]
@@ -19,7 +19,7 @@ const tenantRoutes: ValidRoute[] = TENANT_MAP.map(config => `/${config.tenantId}
 
 
 export const protectedRoutes: ProtectedRoutes = {
-    regular: regularProtectedRoutes,
+    consumer: consumerProtectedRoutes,
     business: tenantRoutes,
     shared: sharedProtectedRoutes
 };
