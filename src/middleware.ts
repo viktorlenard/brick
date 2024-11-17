@@ -37,7 +37,7 @@ export async function middleware(request: NextRequest) {
         case RouteTypes.BusinessLogin:
             return handleBusinessLoginRoute(user, route, request)
     }
-    
+
     return response.value
 }
 

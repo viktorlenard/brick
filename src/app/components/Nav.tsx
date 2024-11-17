@@ -27,7 +27,7 @@ export const Nav = () => {
     return(
         <>
             <div className='flex min-h-12 flex-row items-center justify-between border-0 border-b-2 border-accent text-xl'>
-                <div onClick={() => router.push('/')} 
+                <div onClick={() => router.push('/dashboard')} 
                 className='min-w-24 py-2 cursor-pointer hover:text-accent transition-all'>
                     <h1 className='font-black '>BRICK:</h1>
                 </div>

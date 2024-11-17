@@ -1,17 +1,14 @@
 import { Nav } from "./Nav"
 import { UserName } from './UserName'
-import { TenantData } from "../types/tenant"
+import { PageParams } from "../types/pages"
 
-interface TopBarProps {
-    tenant?: string
-}
-export const NavBar = ({ tenant } : TopBarProps) => {
-
+export const NavBar = () => {
+    
     return(
         <>
             <section>
                 <Nav />
-                <UserName tenant={tenant}/>
+                <UserName />
             </section>
         </>
     )

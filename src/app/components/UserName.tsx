@@ -1,38 +1,46 @@
 import { getUtilClient } from "../utils/supabase/cookiesUtilClient"
-import { PropsWithChildren } from "react"
-import { TenantData } from "../types/tenant"
-interface UserNameProps {
-    tenant?: string
-}
+import { getUserConfig } from "../utils/user-helpers"
 
-export const UserName = async ({ tenant } : UserNameProps) => {
-
-    let tenantName = undefined
-    let userName = undefined
+export const UserName = async () => {
+    let sessionUser
+    let sessionUserId
+    let userName
+    let tenantName
+    
     const supabase = await getUtilClient()
-    const user = await supabase.auth.getUser()
-    const sessionUserId = user.data?.user?.id
-    if(sessionUserId){
-        const { data, error } = await supabase.from('service_users').select("full_name").eq('supabase_user', sessionUserId).single()
-        if(error){
-            console.log(error)
-        }
-        userName = data?.full_name
+    const { data, error } = await supabase.auth.getUser()
+    if(data.user){
+        sessionUser = getUserConfig(data.user)
+        sessionUserId = data.user.id
     }
-    if(tenant){
-        const { data, error } = await supabase.from('tenants').select("name").eq('id', tenant).single()
-        if(error){
-            console.log(error)
+
+    if(sessionUserId) {
+        const [userResult, tenantResult] = await Promise.all([
+            supabase
+                .from('service_users')
+                .select('full_name')
+                .eq('supabase_user', sessionUserId)
+                .single(),
+            supabase
+                .from('tenants')
+                .select('name')
+                .eq('id', sessionUser?.tenants?.primary)
+                .single()
+        ])
+        const { data: userData, error: userError } = userResult;
+        const { data: tenantData, error: tenantError } = tenantResult;
+        if(userData){
+            userName = userData?.full_name
         }
-        if (data){
-            tenantName = data.name
+        if(tenantData){
+            tenantName = tenantData.name
         }
     }
 
     return(
         <div className='flex flex-col my-2 items-end'>
             <h1 className='font-bold'>{userName}</h1>
-            {tenant && <h3 className='leading-none text-sm'>{tenantName}</h3>}
+            {tenantName && <h3 className='leading-none text-sm'>{tenantName}</h3>}
         </div>
     )
 }
