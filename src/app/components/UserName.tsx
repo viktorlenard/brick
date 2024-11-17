@@ -1,16 +1,15 @@
 import { getUtilClient } from "../utils/supabase/cookiesUtilClient"
-import { getUserConfig } from "../utils/user-helpers"
 
-export const UserName = async () => {
-    let sessionUser
+export const UserName = async ({ tenant } : { tenant : string }) => {
+    
     let sessionUserId
     let userName
     let tenantName
+    const tenantId = tenant
     
     const supabase = await getUtilClient()
     const { data, error } = await supabase.auth.getUser()
     if(data.user){
-        sessionUser = getUserConfig(data.user)
         sessionUserId = data.user.id
     }
 
@@ -24,11 +23,11 @@ export const UserName = async () => {
             supabase
                 .from('tenants')
                 .select('name')
-                .eq('id', sessionUser?.tenants?.primary)
+                .eq('id', tenantId)
                 .single()
         ])
-        const { data: userData, error: userError } = userResult;
-        const { data: tenantData, error: tenantError } = tenantResult;
+        const { data: userData } = userResult;
+        const { data: tenantData } = tenantResult;
         if(userData){
             userName = userData?.full_name
         }

@@ -10,10 +10,10 @@ const sharedProtectedRoutes: ValidRoute[] = [
 ]
 // Manually add tenants to match DB.
 export const TENANT_MAP: TenantConfig[] = [
-    { domain: 'foxtons.com', tenantId: 'foxtons', name: 'Foxtons' },
-    { domain: 'merton.com', tenantId: 'merton', name: 'Merton Housing' },
-    { domain: 'packt.com', tenantId: 'packt', name: 'Packt Housing' },
-    { domain: 'smiths.com', tenantId: 'smiths', name: `Smith's Lettings` },
+    { domain: 'foxtons.com', tenantId: 'foxtons' },
+    { domain: 'merton.com', tenantId: 'merton' },
+    { domain: 'packt.com', tenantId: 'packt' },
+    { domain: 'smiths.com', tenantId: 'smiths' },
 ];
 const tenantRoutes: ValidRoute[] = TENANT_MAP.map(config => `/${config.tenantId}` as ValidRoute);
 

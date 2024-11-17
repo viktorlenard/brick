@@ -6,7 +6,6 @@ import { TenantId, UserTypes, UserData } from "./user-helpers";
 export type TenantConfig = {
     domain: string;
     tenantId: string;
-    name: string;
 }
 // Custom type for valid routes.
 export type ValidRoute = `/${string}`
