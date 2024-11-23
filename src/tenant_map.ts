@@ -15,6 +15,12 @@ export const TENANT_MAP: TenantConfig[] = [
     { domain: 'packt.com', tenantId: 'packt' },
     { domain: 'smiths.com', tenantId: 'smiths' },
 ];
+
+export const isValidTenant = (tenant: any): tenant is string => {
+    return TENANT_MAP.some(config => config.tenantId === tenant);
+};
+
+
 const tenantRoutes: ValidRoute[] = TENANT_MAP.map(config => `/${config.tenantId}` as ValidRoute);
 
 

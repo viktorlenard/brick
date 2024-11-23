@@ -15,7 +15,8 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
         'registration_failed',
         'business_user_reg',
         'register_mail_exists',
-        'register_unknown'
+        'register_unknown',
+        "listing-not-found"
 
     ]
 
@@ -79,6 +80,12 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
                             <p className='font-bold'>Please try again later, or reach out to support.</p>
                         </div>
                     )}
+                    {type === "listing-not-found" && (
+                        <div className='font-bold'>
+                            <p className='font-bold'>Can't find this listing.</p>
+                            <p className='font-bold'>I don't know what to tell you.</p>
+                        </div>
+                    )}
                     {type && typeof type === 'string' && !knownErrors.includes(type) && (
                         <div className='font-bold'>
                             <p>Something went wrong.</p>
@@ -88,7 +95,7 @@ export const ErrorPage = async ({ searchParams } : { searchParams : SearchParams
                 </div>
                 <div className='min-w-full flex items-center justify-center'>
                     <Link className='bg-zinc-900 text-light rounded-sm font-mono px-3 py-1 text-sm'
-                        role="button" href="/">Go back
+                        role="button" href="/login">Go back
                     </Link>
                 </div>
             </div>
