@@ -45,7 +45,7 @@ export const getRouteConfig = (path: string) : Route => {
         } else if (protectedRoutes.shared.includes(`/${firstSegment}`)) {
             return { path: path, type: RouteTypes.Shared}
         } else if (protectedRoutes.business.includes(`/${firstSegment}`)) {
-            if(path === `/${firstSegment}` || path === `/${firstSegment}/login`){
+            if(path === `/${firstSegment}` || path === `/${firstSegment}/login` || path === `/${firstSegment}/register`){
                 return { path: path, type: RouteTypes.BusinessLogin, tenant: firstSegment}
             } 
             return { path: path, type: RouteTypes.Business, tenant: firstSegment}

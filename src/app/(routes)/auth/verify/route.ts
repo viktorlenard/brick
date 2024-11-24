@@ -41,12 +41,12 @@ export const GET = async (request : NextRequest) => {
         if(type === 'recovery'){
             return NextResponse.redirect(new URL('/change-password', request.url))
         } else if ((type === 'magiclink' || 'signup ') && (user && user.app_metadata.user_type === 'consumer')){
-            return NextResponse.redirect(new URL('/dashboard/', request.url));
+            return NextResponse.redirect(new URL('/dashboard', request.url));
         } else if ((type === 'signup') && (user && user.app_metadata.user_type === 'business')) {
             if(tenantId === tenant){
-                return NextResponse.redirect(new URL(`/${tenantId}/login`, request.url));    
+                return NextResponse.redirect(new URL(`/${tenantId}/dashboard`, request.url));    
             }
-            return NextResponse.redirect(new URL('/login', request.url));
+            return NextResponse.redirect(new URL(`/${tenantId}/login`, request.url));
         } else if (type === 'magiclink' && user && user.app_metadata.user_type === 'business'){
             // Feature needs implementing.
             console.log("BUSINESS MAGIC LINK", tenant, tenantId )
