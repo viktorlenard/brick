@@ -1,13 +1,11 @@
 'use client'
 
-import Link from "next/link";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { getClient } from "../utils/supabase/browserClient";
-
 import { Button } from "./Button";
 
-export const Nav = () => {
+export const Nav = ({ tenant } : { tenant : string }) => {
 
     const supabase = getClient()
     const router = useRouter()
@@ -27,7 +25,7 @@ export const Nav = () => {
     return(
         <>
             <div className='flex min-h-12 flex-row items-center justify-between border-0 border-b-2 border-accent text-xl'>
-                <div onClick={() => router.push('/dashboard')} 
+                <div onClick={() => router.push(tenant ? `/${tenant}/dashboard` : '/dashboard')} 
                 className='min-w-24 py-2 cursor-pointer hover:text-accent transition-all'>
                     <h1 className='font-black '>BRICK:</h1>
                 </div>
