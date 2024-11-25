@@ -19,9 +19,7 @@ export const ListingList = async ({tenant, params}: { tenant: string | undefined
   const searchParams = await params
   const page = paginate(searchParams)
   const searchValue = Array.isArray(searchParams.search) ? searchParams.search[0]?.trim() : searchParams.search?.trim();
-  const startingPoint = (page - 1) * 6;
-
-  console.log(searchValue)
+  const startingPoint = (page - 1) * 7;
   
   const supabase = await getUtilClient();
 
@@ -45,18 +43,31 @@ export const ListingList = async ({tenant, params}: { tenant: string | undefined
     const postgrestSearchValue = '"%' + cleanSearchString + '%"';
     const postgrestFilterString =
       `postcode.ilike.${postgrestSearchValue}` +
-      `, description.ilike.${postgrestSearchValue}`;
-    countStatement = countStatement.or(postgrestFilterString);
-    listingsStatement = listingsStatement.or(postgrestFilterString);
+      `, author_name.ilike.${postgrestSearchValue}`;
+    // countStatement = countStatement.or(postgrestFilterString);
+    // listingsStatement = listingsStatement.or(postgrestFilterString);
+    
+    const numericValue = Number(cleanSearchString);
+    if (!isNaN(numericValue)) {
+      const idFilterString = 
+        `id.eq.${numericValue}` + 
+        `, reference_nr.eq.${numericValue}`;
+      // Apply integer search filter
+      countStatement = countStatement.or(idFilterString);
+      listingsStatement = listingsStatement.or(idFilterString);
+    } else {
+      // Apply text search filter
+      countStatement = countStatement.or(postgrestFilterString);
+      listingsStatement = listingsStatement.or(postgrestFilterString);
+    }
   }
   listingsStatement = listingsStatement
     .order("status", { ascending: true })
     // .order("created_at", { ascending: false })
-    .range(startingPoint, startingPoint + 5);
+    .range(startingPoint, startingPoint + 6);
   
   const { count } = await countStatement;
   const { data: listings, error } = await listingsStatement;
-  
 
   if (error && !listings) {
     console.log(error)
@@ -68,27 +79,31 @@ export const ListingList = async ({tenant, params}: { tenant: string | undefined
   return (
       <div className='flex justify-center'>
         <div>
-          <table className='flex flex-col min-h-[300px] justify-start'>
+          <table className='flex flex-col min-h-[300px] text-center'>
             <thead>
               <tr>
-                <th className="px-4 py-1 min-w-40">ID</th>
-                <th className="px-4 py-1">Postcode</th>
-                <th className="px-4 py-1">Status</th>
-                <th className="px-4 py-1">Created by</th>
+                <th className="w-32">ID</th>
+                <th className="w-32">Postcode</th>
+                <th className="w-32 ">Status</th>
+                <th className="w-64">Created by</th>
+                <th className="w-32">Details</th>
               </tr>
             </thead>
             <tbody>
-              {(listings || []).map((listing) => (
-                <tr key={listing.id}>
-                  <td className="px-4 py-1 mt-2 bg-dark text-light font-mono text-bold rounded-sm">
-                    <Link href={{pathname: `/${tenant}/listings/details/${listing.id}`, query: { page }}}>
-                      {'Listing id:' + listing.id}
-                    </Link>
-                  </td>
-                  <td className="px-4 py-1 mt-2">{listing.postcode}</td>
-                  <td className="px-4 py-1 mt-2">{getReadableStatus(listing.status)}</td>
-                  <td className="px-4 py-1 mt-2">{listing.author_name}</td>
-                </tr>
+              {(listings || []).map((listing, index) => (
+                  <tr key={listing.id} className={index % 2 !== 0 ? 'flex justify-center py-1' : 'flex bg-gray-200 justify-center py-1'}>
+                    <td className="flex justify-center w-32">
+                      <div className='flex justify-center bg-accent text-light font-mono text-bold w-12 rounded-sm'>{listing.id}</div>
+                    </td>
+                    <td className="w-32"><div className='flex justify-center font-mono text-bold rounded-sm'>{listing.postcode}</div></td>
+                    <td className="w-32">{getReadableStatus(listing.status)}</td>
+                    <td className="w-64">{listing.author_name}</td>
+                    <td className="w-32 bg-black text-light font-mono text-bold rounded-sm">
+                      <Link href={{pathname: `/${tenant}/listings/details/${listing.id}`, query: { page }}}>
+                        {'Details ' + listing.id}
+                      </Link>
+                    </td>
+                  </tr>
               ))}
             </tbody>
           </table>
