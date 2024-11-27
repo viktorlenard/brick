@@ -35,13 +35,13 @@ type ButtonProps = {
     const darkStyle = `${ButtonStyle} ${transparent ? 'text-zinc-900' : 'bg-zinc-900 text-gray-300'}`
 
     return typeof props.href === 'undefined' ? (
-          <button  className={clsx( dark ?  darkStyle : lightStyle, sizes[size], className )} {...props}>
+          <button  className={clsx( className, dark ?  darkStyle : lightStyle, sizes[size] )} {...props}>
             <h3 className={innerStyle}>
                 <span className={spanStyle}>{children}</span>
             </h3>
           </button>
       ) : (
-        <Link className={clsx( dark ?  darkStyle : lightStyle, sizes[size], className )} {...props}>
+        <Link className={clsx( className, dark ?  darkStyle : lightStyle, sizes[size] )} {...props}>
           <h3 className={innerStyle}>
               <span className={spanStyle}>{children}</span>
           </h3>

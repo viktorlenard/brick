@@ -5,7 +5,7 @@ SET session_replication_role = replica;
 --
 
 -- Dumped from database version 15.1 (Ubuntu 15.1-1.pgdg20.04+1)
--- Dumped by pg_dump version 15.7 (Ubuntu 15.7-1.pgdg20.04+1)
+-- Dumped by pg_dump version 15.6
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -845,7 +845,110 @@ INSERT INTO "auth"."audit_log_entries" ("instance_id", "id", "payload", "created
 	('00000000-0000-0000-0000-000000000000', '78c86d06-c18e-4522-b303-31479fe82789', '{"action":"login","actor_id":"b01845c5-69e7-4e2b-b7c2-631acc906641","actor_username":"1@test.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-17 19:35:56.500776+00', ''),
 	('00000000-0000-0000-0000-000000000000', '47bd1eea-2286-47c0-a3d3-2fd54c494382', '{"action":"logout","actor_id":"b01845c5-69e7-4e2b-b7c2-631acc906641","actor_username":"1@test.com","actor_via_sso":false,"log_type":"account"}', '2024-11-17 19:36:04.412662+00', ''),
 	('00000000-0000-0000-0000-000000000000', '23e35cc4-cf5b-4416-81a7-f11be57625d9', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-17 19:36:10.212722+00', ''),
-	('00000000-0000-0000-0000-000000000000', '931fc2c6-8102-4279-a2bc-51662cede4ce', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-17 19:36:31.209212+00', '');
+	('00000000-0000-0000-0000-000000000000', '931fc2c6-8102-4279-a2bc-51662cede4ce', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-17 19:36:31.209212+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f71193eb-a356-4dd5-8ea6-597d891efe5e', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-17 19:39:40.872607+00', ''),
+	('00000000-0000-0000-0000-000000000000', '3f5ea6dd-e8b0-4fc6-ab3e-b8528d52bb99', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-22 20:30:54.444758+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f1225bd9-133f-4518-ad8a-c18fdd12e5b1', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-22 21:29:09.946405+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c290a9bd-f4fb-4c83-abd7-a99f44aba6a4', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-22 21:29:09.948078+00', ''),
+	('00000000-0000-0000-0000-000000000000', '12b3a2ec-fe36-4221-b640-44e53df51c8e', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 10:49:55.730239+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f48b0217-e02a-4f58-b00d-d5442d59b233', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 10:49:55.731565+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd5021dea-2e03-442d-89b7-80556af611f9', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 11:48:10.585377+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6a1d42d7-3870-486e-917f-93f1d0802caa', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 11:48:10.586384+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b45992a7-beb3-4af6-ab75-d67a26ff484a', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 12:46:12.051637+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'dd4e488f-3728-418b-a5a4-d1adbd9a8159', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 12:46:12.053008+00', ''),
+	('00000000-0000-0000-0000-000000000000', '920538df-9371-4ce4-a5ee-44cb06c75186', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 13:44:17.379428+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ddad6e0b-bb5f-4ee5-964b-e01f1b44c414', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 13:44:17.380032+00', ''),
+	('00000000-0000-0000-0000-000000000000', '38d1cfe6-1f6c-4328-bbee-86f050149a2a', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-23 14:07:25.07069+00', ''),
+	('00000000-0000-0000-0000-000000000000', '3c24a8ab-dca1-4c6e-8ae1-7e8800f965e8', '{"action":"login","actor_id":"b01845c5-69e7-4e2b-b7c2-631acc906641","actor_username":"1@test.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-23 14:07:31.611046+00', ''),
+	('00000000-0000-0000-0000-000000000000', '92804db4-16f0-4e53-922f-4fdd9e669bf8', '{"action":"logout","actor_id":"b01845c5-69e7-4e2b-b7c2-631acc906641","actor_username":"1@test.com","actor_via_sso":false,"log_type":"account"}', '2024-11-23 14:07:38.604273+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'de533339-441a-4f9f-8548-a1979caa7542', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-23 14:07:44.88966+00', ''),
+	('00000000-0000-0000-0000-000000000000', '7db1fd3f-738f-451f-b90a-8be9ad637cb2', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 15:17:43.374008+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a3b3aba5-a7f3-4510-a04c-675f912969fd', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 15:17:43.375068+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'cd14a593-584f-4f50-9925-2b8bd891439f', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 16:15:43.35819+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'fe0fc76a-cd8f-4781-81ec-c218d20eb0c6', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 16:15:43.359661+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'fbaa13cc-ebd1-48c4-a27e-91a6e70ed463', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 17:14:07.900789+00', ''),
+	('00000000-0000-0000-0000-000000000000', '40ce8e1f-fb1c-4624-82a3-b2bf159f9ce0', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 17:14:07.90199+00', ''),
+	('00000000-0000-0000-0000-000000000000', '72102b07-f659-416e-9759-73c742545aa7', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 18:12:09.314403+00', ''),
+	('00000000-0000-0000-0000-000000000000', '125ef200-9c52-4703-8afb-a6d513a94c06', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 18:12:09.31521+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6fa16ea2-3c0c-4116-b173-195ab46d87c5', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 19:10:18.76059+00', ''),
+	('00000000-0000-0000-0000-000000000000', '61db062f-cd3d-4d1b-b87b-6d89b3356821', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 19:10:18.761642+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0d988e0c-7ff6-4b06-a77e-ac342bee3d86', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 20:08:42.74487+00', ''),
+	('00000000-0000-0000-0000-000000000000', '5b0dda62-8447-4039-8f02-c3ce58550ecf', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 20:08:42.746048+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f5526c67-6082-48ee-af8b-e4228ccb1850', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 21:11:36.145378+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ed4559a6-ce97-4bfc-b47b-b766706237e7', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 21:11:36.146506+00', ''),
+	('00000000-0000-0000-0000-000000000000', '2cc82cc5-949d-41bd-8369-59213d349eba', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 21:11:36.175468+00', ''),
+	('00000000-0000-0000-0000-000000000000', '92a56914-4bd6-461f-9328-1339a9c374e1', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-23 21:30:34.929071+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0b6d8cdd-139d-4503-a125-3821796f1291', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-23 21:30:42.565647+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c9457b18-45d7-457e-a9bf-fd5586508240', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-23 21:30:56.148572+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c0cf98f6-bdca-4bbf-8650-9124a32e3990', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-23 23:02:57.816359+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0213c6fb-a764-4a86-bf0f-0a033b06cf64', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 00:01:02.965103+00', ''),
+	('00000000-0000-0000-0000-000000000000', '678fbe6d-f17f-41eb-8bc0-9780540942a1', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 00:01:02.965994+00', ''),
+	('00000000-0000-0000-0000-000000000000', '55661e26-11b7-4225-bc5e-f4675d717042', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 01:20:45.916929+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a2902858-32b8-42fa-9877-dd6809218ff2', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 07:52:36.404754+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'eb6df8e7-655b-4618-9805-3a913774907d', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 07:52:36.409568+00', ''),
+	('00000000-0000-0000-0000-000000000000', '72295bb0-7b18-485f-90f6-038b34390ba7', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 08:52:36.199566+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c2a88b80-1457-4e68-bfc8-acf586f5e1c7', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 08:52:36.200824+00', ''),
+	('00000000-0000-0000-0000-000000000000', '5152edcf-1dac-4e7f-9499-e5b67d24206d', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 10:14:14.030867+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b061bc6b-12de-4d11-9aca-c48a11120b78', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 10:43:48.894947+00', ''),
+	('00000000-0000-0000-0000-000000000000', '3f6d69e2-c5c7-4a6e-b915-c1cf43ead2a2', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"user_email":"2@packt.com","user_id":"6ac6b949-4be9-437a-9ec1-e254aafb2740","user_phone":""}}', '2024-11-24 10:50:33.995698+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c2b29fc6-bdd2-4b34-9e89-9e60d7f6936a', '{"action":"user_signedup","actor_id":"6ac6b949-4be9-437a-9ec1-e254aafb2740","actor_username":"2@packt.com","actor_via_sso":false,"log_type":"team"}', '2024-11-24 10:50:51.507089+00', ''),
+	('00000000-0000-0000-0000-000000000000', '0734f75a-890c-4776-bf25-f401e15d3c7a', '{"action":"logout","actor_id":"6ac6b949-4be9-437a-9ec1-e254aafb2740","actor_username":"2@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 10:56:59.429997+00', ''),
+	('00000000-0000-0000-0000-000000000000', '7fec6736-2f1b-4c71-8538-59efa9f84018', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"user_email":"3@packt.com","user_id":"25269a6b-aa66-4a9e-bd86-65a28b6a6469","user_phone":""}}', '2024-11-24 10:57:16.364055+00', ''),
+	('00000000-0000-0000-0000-000000000000', '9584a5a1-f701-410a-baa8-74f9ae4f688d', '{"action":"user_signedup","actor_id":"25269a6b-aa66-4a9e-bd86-65a28b6a6469","actor_username":"3@packt.com","actor_via_sso":false,"log_type":"team"}', '2024-11-24 10:57:20.423024+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c3be9fa7-aac9-4f9f-abc8-3a73d1ed6041', '{"action":"logout","actor_id":"25269a6b-aa66-4a9e-bd86-65a28b6a6469","actor_username":"3@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 11:02:04.478878+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ae217653-b8f9-43df-a70a-d88e6bcc2e76', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"user_email":"4@packt.com","user_id":"ef8deca8-43df-4797-91b3-17aa4806fbc6","user_phone":""}}', '2024-11-24 11:02:29.245376+00', ''),
+	('00000000-0000-0000-0000-000000000000', '52d86a3b-6a74-430c-9ba8-c9558349b8d2', '{"action":"user_signedup","actor_id":"ef8deca8-43df-4797-91b3-17aa4806fbc6","actor_username":"4@packt.com","actor_via_sso":false,"log_type":"team"}', '2024-11-24 11:02:36.808352+00', ''),
+	('00000000-0000-0000-0000-000000000000', '86611873-546c-4fbf-8781-cc4711554f9a', '{"action":"logout","actor_id":"ef8deca8-43df-4797-91b3-17aa4806fbc6","actor_username":"4@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 11:06:45.968439+00', ''),
+	('00000000-0000-0000-0000-000000000000', '7244a545-99e6-4fb5-b166-f2125f8ad0df', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 11:06:54.482663+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1c68f0e0-5f6c-40f9-8d83-fca6694e9ad6', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 11:07:08.341835+00', ''),
+	('00000000-0000-0000-0000-000000000000', '07312658-1ad2-4f41-a594-e95b863e4131', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 11:07:22.292518+00', ''),
+	('00000000-0000-0000-0000-000000000000', '2d5524e6-58c8-4221-91cf-1996ee0f8dcb', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 12:05:26.658555+00', ''),
+	('00000000-0000-0000-0000-000000000000', '8ff9aaa0-261c-4023-b748-2e559d29c0b6', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 12:05:26.658975+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1c981671-ff8f-42fa-b04e-f9985f3c6fa6', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 13:04:26.837345+00', ''),
+	('00000000-0000-0000-0000-000000000000', '69dcd7b0-9018-4f79-84b6-e626b3b50888', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 13:04:26.837728+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1427ed32-9d43-4a94-93e2-d3ba067dacf0', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 16:09:24.886328+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'e0cf0540-d33b-4783-87d4-c5034b75bdd4', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 16:09:24.886805+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'bb91b8aa-086e-4d81-9b4b-80142ad0ce00', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 17:07:47.073197+00', ''),
+	('00000000-0000-0000-0000-000000000000', '8a92a6ef-1bfc-48c3-9625-3b3a1ecd8067', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 17:07:47.07366+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'c2343e6f-9089-4cf3-86f3-49fb59deae1e', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 18:06:04.958203+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd8a84368-0a46-4eb4-8642-629f85129024', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 18:06:04.95854+00', ''),
+	('00000000-0000-0000-0000-000000000000', '548f9339-4397-4845-a1ad-b28901fa9657', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 19:32:18.141221+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a1bf9145-1872-4503-b965-c742e33dec4c', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 19:32:18.14552+00', ''),
+	('00000000-0000-0000-0000-000000000000', '9160c05c-57a0-49e2-b176-33d981561f3e', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 20:32:07.534119+00', ''),
+	('00000000-0000-0000-0000-000000000000', '93205b0a-891a-423d-a876-cb1c0ab0b59f', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 20:32:07.534587+00', ''),
+	('00000000-0000-0000-0000-000000000000', '45009df3-c634-49eb-b566-d8abb4976c8f', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 21:30:22.916209+00', ''),
+	('00000000-0000-0000-0000-000000000000', '4e3b9131-514f-42ff-b730-e3b44a4ffb84', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-24 21:30:22.91664+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'eeb9b11f-7b69-43f1-874a-d3a4d4021406', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 21:53:24.004834+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f2f35162-7a55-4290-88d3-5a6382627ea2', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"user_email":"5@packt.com","user_id":"588d21a8-0239-49c0-a116-050bbc238c28","user_phone":""}}', '2024-11-24 21:54:48.50658+00', ''),
+	('00000000-0000-0000-0000-000000000000', '473c964b-cc45-4496-9371-d83d2c1a2808', '{"action":"user_signedup","actor_id":"588d21a8-0239-49c0-a116-050bbc238c28","actor_username":"5@packt.com","actor_via_sso":false,"log_type":"team"}', '2024-11-24 21:55:09.604381+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a4ac0f3a-fe50-4cd1-b0c9-4d4665a75cfe', '{"action":"logout","actor_id":"588d21a8-0239-49c0-a116-050bbc238c28","actor_username":"5@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 21:56:49.377235+00', ''),
+	('00000000-0000-0000-0000-000000000000', '8c688c59-8ad0-4e22-bd38-c89559614fbb', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 21:57:00.881372+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a9dc8625-229d-4d6e-acf4-46d0a6feef8f', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 21:58:56.748901+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd748473b-c4b7-4ef2-8345-eb2bcd6bfe67', '{"action":"user_signedup","actor_id":"00000000-0000-0000-0000-000000000000","actor_username":"service_role","actor_via_sso":false,"log_type":"team","traits":{"user_email":"1@smiths.com","user_id":"37380a6c-7194-45c6-974b-c16a33b45336","user_phone":""}}', '2024-11-24 21:59:17.024309+00', ''),
+	('00000000-0000-0000-0000-000000000000', '7c83a04d-cc3c-4f0f-8134-d1d8626352ee', '{"action":"user_signedup","actor_id":"37380a6c-7194-45c6-974b-c16a33b45336","actor_username":"1@smiths.com","actor_via_sso":false,"log_type":"team"}', '2024-11-24 21:59:24.232346+00', ''),
+	('00000000-0000-0000-0000-000000000000', '30ca093b-6a32-4277-b623-12f2ca2c24c1', '{"action":"logout","actor_id":"37380a6c-7194-45c6-974b-c16a33b45336","actor_username":"1@smiths.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 22:00:08.483584+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'f08fcbfb-1330-4548-8b72-7b729831db63', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 22:00:23.808705+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'd700728f-b8cb-4605-93e0-818c0225863a', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 22:01:15.374667+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'a3857186-3ed4-4f4d-a0c0-95ed69d1db47', '{"action":"login","actor_id":"588d21a8-0239-49c0-a116-050bbc238c28","actor_username":"5@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 22:01:21.618919+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'fb93e77e-fcb8-405a-bd14-49192db20865', '{"action":"logout","actor_id":"588d21a8-0239-49c0-a116-050bbc238c28","actor_username":"5@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 22:03:17.280157+00', ''),
+	('00000000-0000-0000-0000-000000000000', '66983018-793f-4b24-9b45-867895917594', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 22:05:02.755716+00', ''),
+	('00000000-0000-0000-0000-000000000000', '8fb460d3-6099-4ff9-94fc-7ea571b13fa1', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 22:12:46.61292+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1d922e96-a38d-42bb-bb57-b1c70be8abb9', '{"action":"login","actor_id":"b01845c5-69e7-4e2b-b7c2-631acc906641","actor_username":"1@test.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 22:12:55.716942+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1368099a-9d20-40ed-bdd4-aa7a8f7fafbf', '{"action":"logout","actor_id":"b01845c5-69e7-4e2b-b7c2-631acc906641","actor_username":"1@test.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 22:13:01.825195+00', ''),
+	('00000000-0000-0000-0000-000000000000', '1634e666-6063-45c7-9eb4-94b6a33f1508', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 22:13:12.360437+00', ''),
+	('00000000-0000-0000-0000-000000000000', '83e4f489-e91d-48d6-a6e3-8bc028b37c10', '{"action":"logout","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account"}', '2024-11-24 22:13:33.172585+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'cb276102-d777-4468-9e72-e0f4ef8ca62d', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-24 23:36:15.742593+00', ''),
+	('00000000-0000-0000-0000-000000000000', '6354ff43-6355-43bb-9c02-d20d6994af1e', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-25 00:34:29.373538+00', ''),
+	('00000000-0000-0000-0000-000000000000', '9912d26c-7d13-42c3-b9d3-286014a6d7f5', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-25 00:34:29.374335+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ae14e891-b605-4d6e-8202-664179266a70', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-25 19:42:02.414609+00', ''),
+	('00000000-0000-0000-0000-000000000000', '2df4d4fd-4acf-414e-b867-9a9882dc6d64', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-25 19:42:02.41921+00', ''),
+	('00000000-0000-0000-0000-000000000000', '05f547ca-6e1d-4654-b4e0-89e42e1ed5c3', '{"action":"login","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"account","traits":{"provider":"email"}}', '2024-11-26 20:33:10.810609+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'b74e6e9d-9392-47a6-ae94-18fc25746f93', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-26 21:31:39.077602+00', ''),
+	('00000000-0000-0000-0000-000000000000', '880e5102-918e-45b0-92b0-e0db8f9d1ca8', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-26 21:31:39.078274+00', ''),
+	('00000000-0000-0000-0000-000000000000', '803d201f-6ba6-4cb1-8731-175a7b8f0be0', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-26 22:49:12.110421+00', ''),
+	('00000000-0000-0000-0000-000000000000', '10c4aaa9-d3f5-4dd2-a043-c8ec821d926d', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-26 22:49:12.11248+00', ''),
+	('00000000-0000-0000-0000-000000000000', '5ead9cf4-a374-4ce4-8d02-4839add5cc1f', '{"action":"token_refreshed","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-26 23:47:19.149025+00', ''),
+	('00000000-0000-0000-0000-000000000000', 'ce63ec1a-b94d-46f8-a6db-cc36905dc60a', '{"action":"token_revoked","actor_id":"66f240f9-30d1-49ca-bc6c-a2e6872a531a","actor_username":"1@packt.com","actor_via_sso":false,"log_type":"token"}', '2024-11-26 23:47:19.149598+00', '');
 
 
 --
@@ -884,12 +987,17 @@ INSERT INTO "auth"."users" ("instance_id", "id", "aud", "role", "email", "encryp
 	('00000000-0000-0000-0000-000000000000', 'fa6dd7af-3d88-4b7d-a012-6909a6c86937', 'authenticated', 'authenticated', 'chibo@email.com', '$2a$10$ooTs4aNQzlH3F/1zRXdEKuYmw.1vwzR8sW5i0LOLn0eMl5llwX8za', '2024-11-10 19:33:54.178107+00', NULL, '', '2024-11-10 19:33:45.627722+00', '', NULL, '', '', NULL, '2024-11-10 19:33:54.179188+00', '{"tenants": [], "provider": "email", "providers": ["email"], "user_type": "consumer"}', '{}', NULL, '2024-11-10 19:33:45.615258+00', '2024-11-10 19:33:54.180217+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
 	('00000000-0000-0000-0000-000000000000', 'caf05365-413a-4b4a-af76-50bee42487c5', 'authenticated', 'authenticated', 'chris@packt.com', '$2a$10$wIhAX1rLSzA8LNlNAYJBBOyWT4h4JAjEiS6twJ94HSMPC8ZHSDYKm', '2024-11-10 19:25:17.59605+00', NULL, '', '2024-11-10 19:25:11.118484+00', '', NULL, '', '', NULL, '2024-11-10 19:25:17.597456+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-10 19:25:11.102965+00', '2024-11-10 19:25:17.598833+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
 	('00000000-0000-0000-0000-000000000000', '613f8d28-d972-41cd-9964-e838f6381a47', 'authenticated', 'authenticated', 'pm@packt.com', '$2a$10$IeqpJ5zgxqlck1mBpomtvuziZCuMcI008xZCNkweeIVOHQLi43atu', '2024-11-10 19:35:15.706564+00', NULL, '', NULL, '', NULL, '', '', NULL, '2024-11-10 19:41:21.861795+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-10 19:35:00.428704+00', '2024-11-10 19:41:28.944607+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', 'authenticated', 'authenticated', '1@packt.com', '$2a$10$1RZ1o1z3oggMaSA3BGQAE.l6CJ8fHAsenlUnF0DJ6SBsnxlSF3l1S', '2024-10-27 16:05:18.974805+00', NULL, '', NULL, '', '2024-11-17 16:34:36.768744+00', '', '', NULL, '2024-11-26 20:33:10.811422+00', '{"tenants": ["packt", "merton"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-10-27 16:05:18.970117+00', '2024-11-26 23:47:19.150833+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
 	('00000000-0000-0000-0000-000000000000', '0b941b88-8312-4d08-b619-277d89dd997c', 'authenticated', 'authenticated', 'test@packt.com', '$2a$10$4McBnEqE79dbPko6KhdVH.5UobSGB8wy0dGXOhnu/LW5Ac3Uz50ZS', '2024-11-11 13:50:52.262217+00', NULL, '', '2024-11-11 13:50:45.823471+00', '', NULL, '', '', NULL, '2024-11-11 13:50:52.263572+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-11 13:50:45.806315+00', '2024-11-11 13:50:52.264723+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
 	('00000000-0000-0000-0000-000000000000', 'b719be99-0f01-4946-b621-c74f44889348', 'authenticated', 'authenticated', 'kolbasz@email.com', '$2a$10$bCfmdUER0.3hB4q/LbhdOufceY7.dpJHdHzcNsArYGcm5DvjwET9q', '2024-11-11 13:53:11.160408+00', NULL, '', '2024-11-11 13:52:54.709668+00', '', '2024-11-11 19:08:26.119441+00', '', '', NULL, '2024-11-11 19:08:30.469387+00', '{"tenants": [], "provider": "email", "providers": ["email"], "user_type": "consumer"}', '{}', NULL, '2024-11-11 13:52:54.69068+00', '2024-11-11 19:08:30.471676+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
 	('00000000-0000-0000-0000-000000000000', 'd69de89e-4105-4f3b-a524-9fd7fbe5672c', 'authenticated', 'authenticated', 'barf@foxtons.com', '$2a$10$ENzrtoOfcpf/4C/F67FWuOt9bUxxdlWqgNQjrs9RsF5OPKX/zZwW.', '2024-11-12 23:39:12.939891+00', NULL, '', NULL, '', NULL, '', '', NULL, '2024-11-12 23:40:06.525529+00', '{"tenants": ["foxtons"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-12 23:38:42.507926+00', '2024-11-12 23:40:06.526478+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', 'b01845c5-69e7-4e2b-b7c2-631acc906641', 'authenticated', 'authenticated', '1@test.com', '$2a$10$ZFvJDNcDxD7xLgrAtA8bi.VpyWzprLf5qcCY4ohW7swZ/IfHv3Zeq', '2024-11-15 10:36:41.211547+00', NULL, '', '2024-11-15 10:36:35.679041+00', '', '2024-11-15 11:33:36.954338+00', '', '', NULL, '2024-11-17 19:35:56.501192+00', '{"tenants": [], "provider": "email", "providers": ["email"], "user_type": "consumer"}', '{}', NULL, '2024-11-15 10:36:35.663007+00', '2024-11-17 19:35:56.502328+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', 'authenticated', 'authenticated', '1@packt.com', '$2a$10$1RZ1o1z3oggMaSA3BGQAE.l6CJ8fHAsenlUnF0DJ6SBsnxlSF3l1S', '2024-10-27 16:05:18.974805+00', NULL, '', NULL, '', '2024-11-17 16:34:36.768744+00', '', '', NULL, '2024-11-17 19:36:10.213146+00', '{"tenants": ["packt", "merton"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-10-27 16:05:18.970117+00', '2024-11-17 19:36:10.213985+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
-	('00000000-0000-0000-0000-000000000000', 'd048d018-cb9c-41c8-a20e-ca785ef0678b', 'authenticated', 'authenticated', 'fasz@email.com', '$2a$10$5CY370.iGcfFtS6XCMMMNOx.54o6z.LzlNY40v4/n1dKuQbX/gdTm', '2024-11-15 15:21:50.837779+00', NULL, '', NULL, '', NULL, '', '', NULL, '2024-11-15 22:15:40.858495+00', '{"tenants": [], "provider": "email", "providers": ["email"], "user_type": "consumer"}', '{}', NULL, '2024-11-15 15:21:46.480658+00', '2024-11-15 22:15:40.859447+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
+	('00000000-0000-0000-0000-000000000000', '25269a6b-aa66-4a9e-bd86-65a28b6a6469', 'authenticated', 'authenticated', '3@packt.com', '$2a$10$2gznu6sIET1unmKSCLIDTOAiYFDdfRZ8uFweoLiPhECJr7FbLtLlW', '2024-11-24 10:57:20.423433+00', NULL, '', '2024-11-24 10:57:16.379925+00', '', NULL, '', '', NULL, '2024-11-24 10:57:20.424443+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-24 10:57:16.362861+00', '2024-11-24 10:57:20.425229+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '6ac6b949-4be9-437a-9ec1-e254aafb2740', 'authenticated', 'authenticated', '2@packt.com', '$2a$10$q3XHuWcyRHm.3JIhxCPjXObUBZlIR9iQrD.rIA/96Sao9o.8bC53a', '2024-11-24 10:50:51.507581+00', NULL, '', '2024-11-24 10:50:34.02255+00', '', NULL, '', '', NULL, '2024-11-24 10:50:51.51099+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-24 10:50:33.99218+00', '2024-11-24 10:50:51.512211+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', 'd048d018-cb9c-41c8-a20e-ca785ef0678b', 'authenticated', 'authenticated', 'fasz@email.com', '$2a$10$5CY370.iGcfFtS6XCMMMNOx.54o6z.LzlNY40v4/n1dKuQbX/gdTm', '2024-11-15 15:21:50.837779+00', NULL, '', NULL, '', NULL, '', '', NULL, '2024-11-15 22:15:40.858495+00', '{"tenants": [], "provider": "email", "providers": ["email"], "user_type": "consumer"}', '{}', NULL, '2024-11-15 15:21:46.480658+00', '2024-11-15 22:15:40.859447+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', 'ef8deca8-43df-4797-91b3-17aa4806fbc6', 'authenticated', 'authenticated', '4@packt.com', '$2a$10$JOvMFWSdRfwe15JDByWdGulMbeC8jXgnedee1tQbcYurBxHnz4W/e', '2024-11-24 11:02:36.808791+00', NULL, '', '2024-11-24 11:02:29.261331+00', '', NULL, '', '', NULL, '2024-11-24 11:02:36.809928+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-24 11:02:29.244405+00', '2024-11-24 11:02:36.811109+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '37380a6c-7194-45c6-974b-c16a33b45336', 'authenticated', 'authenticated', '1@smiths.com', '$2a$10$4CfmuLRVIU.zXYnLfsMJZuhwppk0dH6w6abZoIDLnuKGfQ8fzoILS', '2024-11-24 21:59:24.232671+00', NULL, '', '2024-11-24 21:59:17.038309+00', '', NULL, '', '', NULL, '2024-11-24 21:59:24.233633+00', '{"tenants": ["smiths"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-24 21:59:17.023093+00', '2024-11-24 21:59:24.234415+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', '588d21a8-0239-49c0-a116-050bbc238c28', 'authenticated', 'authenticated', '5@packt.com', '$2a$10$ibMTQRU1GATw7tU3aoeTkOo148jiCt1y90e8PJm97HQmgdz.MxQJe', '2024-11-24 21:55:09.604726+00', NULL, '', '2024-11-24 21:54:48.530568+00', '', NULL, '', '', NULL, '2024-11-24 22:01:21.61932+00', '{"tenants": ["packt"], "provider": "email", "providers": ["email"], "user_type": "business"}', '{}', NULL, '2024-11-24 21:54:48.505186+00', '2024-11-24 22:01:21.620324+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false),
+	('00000000-0000-0000-0000-000000000000', 'b01845c5-69e7-4e2b-b7c2-631acc906641', 'authenticated', 'authenticated', '1@test.com', '$2a$10$ZFvJDNcDxD7xLgrAtA8bi.VpyWzprLf5qcCY4ohW7swZ/IfHv3Zeq', '2024-11-15 10:36:41.211547+00', NULL, '', '2024-11-15 10:36:35.679041+00', '', '2024-11-15 11:33:36.954338+00', '', '', NULL, '2024-11-24 22:12:55.717452+00', '{"tenants": [], "provider": "email", "providers": ["email"], "user_type": "consumer"}', '{}', NULL, '2024-11-15 10:36:35.663007+00', '2024-11-24 22:12:55.718521+00', NULL, NULL, '', '', NULL, '', 0, NULL, '', NULL, false, NULL, false);
 
 
 --
@@ -920,7 +1028,12 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 	('b719be99-0f01-4946-b621-c74f44889348', 'b719be99-0f01-4946-b621-c74f44889348', '{"sub": "b719be99-0f01-4946-b621-c74f44889348", "email": "kolbasz@email.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-11 13:52:54.69133+00', '2024-11-11 13:52:54.691353+00', '2024-11-11 13:52:54.691353+00', 'e3643bf0-8aa6-435e-a6a3-a37b09300469'),
 	('d69de89e-4105-4f3b-a524-9fd7fbe5672c', 'd69de89e-4105-4f3b-a524-9fd7fbe5672c', '{"sub": "d69de89e-4105-4f3b-a524-9fd7fbe5672c", "email": "barf@foxtons.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-12 23:38:42.509311+00', '2024-11-12 23:38:42.509342+00', '2024-11-12 23:38:42.509342+00', '1c0323ae-441f-4e1d-92a6-4ae9725f45a5'),
 	('b01845c5-69e7-4e2b-b7c2-631acc906641', 'b01845c5-69e7-4e2b-b7c2-631acc906641', '{"sub": "b01845c5-69e7-4e2b-b7c2-631acc906641", "email": "1@test.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-15 10:36:35.664136+00', '2024-11-15 10:36:35.664168+00', '2024-11-15 10:36:35.664168+00', '224c3367-5a62-4fa8-915d-2c5d72ba2017'),
-	('d048d018-cb9c-41c8-a20e-ca785ef0678b', 'd048d018-cb9c-41c8-a20e-ca785ef0678b', '{"sub": "d048d018-cb9c-41c8-a20e-ca785ef0678b", "email": "fasz@email.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-15 15:21:46.481994+00', '2024-11-15 15:21:46.482021+00', '2024-11-15 15:21:46.482021+00', 'd9171d98-3351-444f-a12e-652019dfff05');
+	('d048d018-cb9c-41c8-a20e-ca785ef0678b', 'd048d018-cb9c-41c8-a20e-ca785ef0678b', '{"sub": "d048d018-cb9c-41c8-a20e-ca785ef0678b", "email": "fasz@email.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-15 15:21:46.481994+00', '2024-11-15 15:21:46.482021+00', '2024-11-15 15:21:46.482021+00', 'd9171d98-3351-444f-a12e-652019dfff05'),
+	('6ac6b949-4be9-437a-9ec1-e254aafb2740', '6ac6b949-4be9-437a-9ec1-e254aafb2740', '{"sub": "6ac6b949-4be9-437a-9ec1-e254aafb2740", "email": "2@packt.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-24 10:50:33.995172+00', '2024-11-24 10:50:33.995197+00', '2024-11-24 10:50:33.995197+00', 'f0ae6089-1b02-419c-a5ca-4f3776f4b60c'),
+	('25269a6b-aa66-4a9e-bd86-65a28b6a6469', '25269a6b-aa66-4a9e-bd86-65a28b6a6469', '{"sub": "25269a6b-aa66-4a9e-bd86-65a28b6a6469", "email": "3@packt.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-24 10:57:16.36354+00', '2024-11-24 10:57:16.363568+00', '2024-11-24 10:57:16.363568+00', 'fcd61de9-906d-46f3-8dca-198b91669d2e'),
+	('ef8deca8-43df-4797-91b3-17aa4806fbc6', 'ef8deca8-43df-4797-91b3-17aa4806fbc6', '{"sub": "ef8deca8-43df-4797-91b3-17aa4806fbc6", "email": "4@packt.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-24 11:02:29.244974+00', '2024-11-24 11:02:29.244994+00', '2024-11-24 11:02:29.244994+00', '3a33a5cb-0bc8-4aef-93aa-263c9405b710'),
+	('588d21a8-0239-49c0-a116-050bbc238c28', '588d21a8-0239-49c0-a116-050bbc238c28', '{"sub": "588d21a8-0239-49c0-a116-050bbc238c28", "email": "5@packt.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-24 21:54:48.506047+00', '2024-11-24 21:54:48.506071+00', '2024-11-24 21:54:48.506071+00', '512586ab-c6fa-4661-a55d-45b969868578'),
+	('37380a6c-7194-45c6-974b-c16a33b45336', '37380a6c-7194-45c6-974b-c16a33b45336', '{"sub": "37380a6c-7194-45c6-974b-c16a33b45336", "email": "1@smiths.com", "email_verified": false, "phone_verified": false}', 'email', '2024-11-24 21:59:17.023681+00', '2024-11-24 21:59:17.023705+00', '2024-11-24 21:59:17.023705+00', 'd571128a-a9f2-483c-ba43-8b43feddd978');
 
 
 --
@@ -934,6 +1047,8 @@ INSERT INTO "auth"."identities" ("provider_id", "user_id", "identity_data", "pro
 --
 
 INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "factor_id", "aal", "not_after", "refreshed_at", "user_agent", "ip", "tag") VALUES
+	('435cc70c-1824-462c-81bc-dc8e461b5dd8', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', '2024-11-24 23:36:15.743401+00', '2024-11-25 19:42:02.424596+00', NULL, 'aal1', NULL, '2024-11-25 19:42:02.424557', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', '172.19.0.1', NULL),
+	('4c1d5d94-8db2-4fb8-86ad-be1dfb3f6ebb', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', '2024-11-26 20:33:10.811517+00', '2024-11-26 23:47:19.15285+00', NULL, 'aal1', NULL, '2024-11-26 23:47:19.152811', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36', '172.19.0.1', NULL),
 	('eb7cd0ea-e758-4568-856b-0d6aa2eaf5c8', '8d44df12-5ae2-4cfb-8110-5f2a076a049c', '2024-11-15 10:22:01.529458+00', '2024-11-15 10:22:01.529458+00', NULL, 'aal1', NULL, NULL, 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36', '172.19.0.1', NULL);
 
 
@@ -942,7 +1057,9 @@ INSERT INTO "auth"."sessions" ("id", "user_id", "created_at", "updated_at", "fac
 --
 
 INSERT INTO "auth"."mfa_amr_claims" ("session_id", "created_at", "updated_at", "authentication_method", "id") VALUES
-	('eb7cd0ea-e758-4568-856b-0d6aa2eaf5c8', '2024-11-15 10:22:01.530447+00', '2024-11-15 10:22:01.530447+00', 'password', '843b4304-f919-4fb9-a0a8-aa8852f9ecf8');
+	('eb7cd0ea-e758-4568-856b-0d6aa2eaf5c8', '2024-11-15 10:22:01.530447+00', '2024-11-15 10:22:01.530447+00', 'password', '843b4304-f919-4fb9-a0a8-aa8852f9ecf8'),
+	('435cc70c-1824-462c-81bc-dc8e461b5dd8', '2024-11-24 23:36:15.745229+00', '2024-11-24 23:36:15.745229+00', 'password', '29530ca8-d476-416e-8af3-985376def4b0'),
+	('4c1d5d94-8db2-4fb8-86ad-be1dfb3f6ebb', '2024-11-26 20:33:10.814916+00', '2024-11-26 20:33:10.814916+00', 'password', 'cecf012a-9f88-4d78-b3fc-45cd43033381');
 
 
 --
@@ -971,6 +1088,13 @@ INSERT INTO "auth"."one_time_tokens" ("id", "user_id", "token_type", "token_hash
 --
 
 INSERT INTO "auth"."refresh_tokens" ("instance_id", "id", "token", "user_id", "revoked", "created_at", "updated_at", "parent", "session_id") VALUES
+	('00000000-0000-0000-0000-000000000000', 394, 'xH1bzbUakrbWyw9KLFWPig', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', true, '2024-11-24 23:36:15.744238+00', '2024-11-25 00:34:29.374794+00', NULL, '435cc70c-1824-462c-81bc-dc8e461b5dd8'),
+	('00000000-0000-0000-0000-000000000000', 395, 'ikoAdmH_Teka1sLYAv2ThA', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', true, '2024-11-25 00:34:29.375207+00', '2024-11-25 19:42:02.420042+00', 'xH1bzbUakrbWyw9KLFWPig', '435cc70c-1824-462c-81bc-dc8e461b5dd8'),
+	('00000000-0000-0000-0000-000000000000', 396, 'c4pAQZrz6QHvvvLDsu6DWQ', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', false, '2024-11-25 19:42:02.422199+00', '2024-11-25 19:42:02.422199+00', 'ikoAdmH_Teka1sLYAv2ThA', '435cc70c-1824-462c-81bc-dc8e461b5dd8'),
+	('00000000-0000-0000-0000-000000000000', 397, '8L1ZxW0pbMXuIwr_JHV7_A', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', true, '2024-11-26 20:33:10.813979+00', '2024-11-26 21:31:39.078758+00', NULL, '4c1d5d94-8db2-4fb8-86ad-be1dfb3f6ebb'),
+	('00000000-0000-0000-0000-000000000000', 398, 'LwEQJL-nKI0DtBLn2YUVeA', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', true, '2024-11-26 21:31:39.079219+00', '2024-11-26 22:49:12.113176+00', '8L1ZxW0pbMXuIwr_JHV7_A', '4c1d5d94-8db2-4fb8-86ad-be1dfb3f6ebb'),
+	('00000000-0000-0000-0000-000000000000', 399, '54zylppgPWr_QDO2jhHOlQ', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', true, '2024-11-26 22:49:12.113581+00', '2024-11-26 23:47:19.149968+00', 'LwEQJL-nKI0DtBLn2YUVeA', '4c1d5d94-8db2-4fb8-86ad-be1dfb3f6ebb'),
+	('00000000-0000-0000-0000-000000000000', 400, 'LYCrPQLIrdhbr_jNJ28Bcw', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', false, '2024-11-26 23:47:19.150285+00', '2024-11-26 23:47:19.150285+00', '54zylppgPWr_QDO2jhHOlQ', '4c1d5d94-8db2-4fb8-86ad-be1dfb3f6ebb'),
 	('00000000-0000-0000-0000-000000000000', 302, 'H0ywUhpWFlRoTSGCxAukCQ', '8d44df12-5ae2-4cfb-8110-5f2a076a049c', false, '2024-11-15 10:22:01.529839+00', '2024-11-15 10:22:01.529839+00', NULL, 'eb7cd0ea-e758-4568-856b-0d6aa2eaf5c8');
 
 
@@ -1008,31 +1132,36 @@ INSERT INTO "auth"."refresh_tokens" ("instance_id", "id", "token", "user_id", "r
 -- Data for Name: service_users; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "public"."service_users" ("id", "created_at", "full_name", "supabase_user", "user_type") VALUES
-	(3, '2024-11-02 13:45:31.66277+00', 'Automatic User', '7f58d9c6-d990-4e7f-94eb-bb04f4ce41d1', 'business'),
-	(1, '2024-11-02 13:44:55.632099+00', 'Viktor Lenard', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', 'business'),
-	(2, '2024-11-02 13:45:15.589257+00', 'Test User 2', '8d44df12-5ae2-4cfb-8110-5f2a076a049c', 'consumer'),
-	(4, '2024-11-10 00:23:52.480513+00', 'Consumer John', '63eb1714-eb58-44cb-8d11-7525844b61bc', 'consumer'),
-	(5, '2024-11-10 00:27:00.675139+00', 'Consumer Peter', '915530f4-ce1c-4f35-8375-5eba064caf4a', 'consumer'),
-	(8, '2024-11-10 15:33:59.072948+00', 'Peter Packt', 'b2e98cc0-4ffe-44f8-a2ef-a754acf5cb0b', 'business'),
-	(9, '2024-11-10 15:35:36.537678+00', 'Viktor Lenard', '2e399d0a-8e86-4d45-b799-00da8c027574', 'consumer'),
-	(10, '2024-11-10 19:20:49.76582+00', 'Peter Parker', '7427dea8-b6f9-462e-9adc-f2a7d9ce8d8d', 'consumer'),
-	(11, '2024-11-10 19:24:33.47274+00', 'John Doe', '4aeeec54-aef9-48ff-99a4-b1937ea8a125', 'consumer'),
-	(12, '2024-11-10 19:25:11.110674+00', 'Chris', 'caf05365-413a-4b4a-af76-50bee42487c5', 'consumer'),
-	(13, '2024-11-10 19:33:45.621561+00', 'Chibo', 'fa6dd7af-3d88-4b7d-a012-6909a6c86937', 'consumer'),
-	(14, '2024-11-10 19:35:00.434981+00', 'Packt Man', '613f8d28-d972-41cd-9964-e838f6381a47', 'consumer'),
-	(17, '2024-11-10 20:26:44.770793+00', 'Average Joe', '5417bee7-c076-418a-902c-b8ef03a151be', 'consumer'),
-	(20, '2024-11-10 20:35:17.618872+00', 'Paul Mary', '1bf8ebad-6832-4e3b-a478-36f400a34b2c', 'consumer'),
-	(24, '2024-11-10 20:54:32.719397+00', 'Henry Packt', 'a85a2ab4-a9ca-442b-8881-1177d466a535', 'business'),
-	(27, '2024-11-10 21:12:42.807101+00', 'Tosh Packt', 'bdcb3b7e-085f-46fd-b98e-a9ce940f4c44', 'business'),
-	(26, '2024-11-10 21:11:55.406705+00', 'Kelly Packt', '21c23707-47e2-489a-9682-8d884a656e8b', 'business'),
-	(28, '2024-11-10 21:21:38.206287+00', 'Ryan Packt', 'b00c24e8-e6e9-4109-8e22-a72172bb8376', 'business'),
-	(29, '2024-11-10 21:31:31.262918+00', 'Balint', 'b359f6ee-ccf0-4db8-9d96-b5146eef70f3', 'consumer'),
-	(30, '2024-11-11 13:50:45.81389+00', 'Pack Test', '0b941b88-8312-4d08-b619-277d89dd997c', 'business'),
-	(31, '2024-11-11 13:52:54.701134+00', 'Kalbasz', 'b719be99-0f01-4946-b621-c74f44889348', 'consumer'),
-	(32, '2024-11-12 23:38:42.518017+00', 'Barf fox', 'd69de89e-4105-4f3b-a524-9fd7fbe5672c', 'business'),
-	(33, '2024-11-15 10:36:35.670808+00', 'Consumer Account', 'b01845c5-69e7-4e2b-b7c2-631acc906641', 'consumer'),
-	(34, '2024-11-15 15:21:46.489021+00', 'fasz', 'd048d018-cb9c-41c8-a20e-ca785ef0678b', 'consumer');
+INSERT INTO "public"."service_users" ("id", "created_at", "full_name", "supabase_user", "user_type", "job_title") VALUES
+	(2, '2024-11-02 13:45:15.589257+00', 'Test User 2', '8d44df12-5ae2-4cfb-8110-5f2a076a049c', 'consumer', NULL),
+	(4, '2024-11-10 00:23:52.480513+00', 'Consumer John', '63eb1714-eb58-44cb-8d11-7525844b61bc', 'consumer', NULL),
+	(5, '2024-11-10 00:27:00.675139+00', 'Consumer Peter', '915530f4-ce1c-4f35-8375-5eba064caf4a', 'consumer', NULL),
+	(9, '2024-11-10 15:35:36.537678+00', 'Viktor Lenard', '2e399d0a-8e86-4d45-b799-00da8c027574', 'consumer', NULL),
+	(10, '2024-11-10 19:20:49.76582+00', 'Peter Parker', '7427dea8-b6f9-462e-9adc-f2a7d9ce8d8d', 'consumer', NULL),
+	(11, '2024-11-10 19:24:33.47274+00', 'John Doe', '4aeeec54-aef9-48ff-99a4-b1937ea8a125', 'consumer', NULL),
+	(12, '2024-11-10 19:25:11.110674+00', 'Chris', 'caf05365-413a-4b4a-af76-50bee42487c5', 'consumer', NULL),
+	(13, '2024-11-10 19:33:45.621561+00', 'Chibo', 'fa6dd7af-3d88-4b7d-a012-6909a6c86937', 'consumer', NULL),
+	(14, '2024-11-10 19:35:00.434981+00', 'Packt Man', '613f8d28-d972-41cd-9964-e838f6381a47', 'consumer', NULL),
+	(17, '2024-11-10 20:26:44.770793+00', 'Average Joe', '5417bee7-c076-418a-902c-b8ef03a151be', 'consumer', NULL),
+	(20, '2024-11-10 20:35:17.618872+00', 'Paul Mary', '1bf8ebad-6832-4e3b-a478-36f400a34b2c', 'consumer', NULL),
+	(29, '2024-11-10 21:31:31.262918+00', 'Balint', 'b359f6ee-ccf0-4db8-9d96-b5146eef70f3', 'consumer', NULL),
+	(31, '2024-11-11 13:52:54.701134+00', 'Kalbasz', 'b719be99-0f01-4946-b621-c74f44889348', 'consumer', NULL),
+	(33, '2024-11-15 10:36:35.670808+00', 'Consumer Account', 'b01845c5-69e7-4e2b-b7c2-631acc906641', 'consumer', NULL),
+	(34, '2024-11-15 15:21:46.489021+00', 'fasz', 'd048d018-cb9c-41c8-a20e-ca785ef0678b', 'consumer', NULL),
+	(1, '2024-11-02 13:44:55.632099+00', 'Viktor Lenard', '66f240f9-30d1-49ca-bc6c-a2e6872a531a', 'business', 'Programmer'),
+	(38, '2024-11-24 21:54:48.517993+00', 'Yuko', '588d21a8-0239-49c0-a116-050bbc238c28', 'business', 'UX Designer'),
+	(3, '2024-11-02 13:45:31.66277+00', 'Automatic User', '7f58d9c6-d990-4e7f-94eb-bb04f4ce41d1', 'business', 'Account Manager'),
+	(8, '2024-11-10 15:33:59.072948+00', 'Peter Packt', 'b2e98cc0-4ffe-44f8-a2ef-a754acf5cb0b', 'business', 'Programmer'),
+	(24, '2024-11-10 20:54:32.719397+00', 'Henry Packt', 'a85a2ab4-a9ca-442b-8881-1177d466a535', 'business', 'Designer'),
+	(26, '2024-11-10 21:11:55.406705+00', 'Kelly Packt', '21c23707-47e2-489a-9682-8d884a656e8b', 'business', 'IT Manager'),
+	(27, '2024-11-10 21:12:42.807101+00', 'Tosh Packt', 'bdcb3b7e-085f-46fd-b98e-a9ce940f4c44', 'business', 'Marketing Executive'),
+	(28, '2024-11-10 21:21:38.206287+00', 'Ryan Packt', 'b00c24e8-e6e9-4109-8e22-a72172bb8376', 'business', 'Account Director'),
+	(30, '2024-11-11 13:50:45.81389+00', 'Pack Test', '0b941b88-8312-4d08-b619-277d89dd997c', 'business', 'Agent'),
+	(32, '2024-11-12 23:38:42.518017+00', 'Barf fox', 'd69de89e-4105-4f3b-a524-9fd7fbe5672c', 'business', 'Senior Agent'),
+	(35, '2024-11-24 10:50:34.007161+00', 'Peter Packt', '6ac6b949-4be9-437a-9ec1-e254aafb2740', 'business', 'Area Lead'),
+	(36, '2024-11-24 10:57:16.369539+00', 'John Packt', '25269a6b-aa66-4a9e-bd86-65a28b6a6469', 'business', 'Agent'),
+	(37, '2024-11-24 11:02:29.25015+00', 'Dave Packt', 'ef8deca8-43df-4797-91b3-17aa4806fbc6', 'business', 'Sanitation Manager'),
+	(39, '2024-11-24 21:59:17.029754+00', 'Mr Smith', '37380a6c-7194-45c6-974b-c16a33b45336', 'business', 'Office Manager');
 
 
 --
@@ -1050,10 +1179,18 @@ INSERT INTO "public"."tenants" ("id", "created_at", "name", "domain") VALUES
 -- Data for Name: listings; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO "public"."listings" ("id", "created_at", "created_by", "tenant", "reference_nr", "status", "listing_type", "price_pcm", "deposit", "bedrooms", "bathrooms", "size_sqm", "is_furnished", "min_tenancy_months", "available_from", "council_tax_band", "heating_type", "has_garden", "parking_type", "allows_pets", "epc_rating", "description", "postcode", "building_name", "building_number", "street_line1", "street_line2", "locality", "town_city", "country", "council", "last_edit") VALUES
-	(5, '2024-11-17 19:25:46.502735+00', 1, 'packt', 5, 'inactive', 'rental', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW197BB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-17 19:25:46.502735+00'),
-	(6, '2024-11-17 19:29:26.958045+00', 1, 'packt', 6, 'inactive', 'rental', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW6 1BD', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-17 19:29:26.958045+00'),
-	(7, '2024-11-17 19:30:07.266361+00', 1, 'packt', 7, 'inactive', 'rental', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW1 7AD', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-17 19:30:07.266361+00');
+INSERT INTO "public"."listings" ("id", "created_at", "created_by", "tenant", "reference_nr", "status", "listing_type", "price_pcm", "deposit", "bedrooms", "bathrooms", "size_sqm", "is_furnished", "min_tenancy_months", "available_from", "council_tax_band", "heating_type", "has_garden", "parking_type", "allows_pets", "epc_rating", "description", "postcode", "building_name", "building_number", "street_line1", "street_line2", "locality", "town_city", "country", "council", "last_edit", "author_name") VALUES
+	(8, '2024-11-23 18:58:39.094281+00', 1, 'packt', 8, 'inactive', 'rental', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW197BB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 18:58:39.094281+00', 'Viktor Lenard'),
+	(9, '2024-11-23 19:33:56.224123+00', 1, 'packt', 9, 'inactive', 'rental', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW19 4HA', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 19:33:56.224123+00', 'Viktor Lenard'),
+	(11, '2024-11-23 19:51:41.814315+00', 1, 'packt', 11, 'inactive', 'rental', 1900, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW19 7AB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 19:51:41.814315+00', 'Viktor Lenard'),
+	(12, '2024-11-23 20:06:02.296846+00', 1, 'packt', 12, 'inactive', 'leasehold', 2100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW7 5GH', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 20:06:02.296846+00', 'Viktor Lenard'),
+	(13, '2024-11-23 21:31:37.161138+00', 1, 'packt', 13, 'inactive', 'rental', 2200, 3000, 4, 1, 600, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW4 6SZ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 21:31:37.161138+00', 'Viktor Lenard'),
+	(15, '2024-11-23 23:20:44.990957+00', 1, 'packt', 15, 'inactive', 'rental', 2200, 2800, 3, 2, NULL, false, 12, '2024-11-23', 'a', NULL, NULL, NULL, NULL, NULL, NULL, 'SW194LR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-23 23:20:44.990957+00', 'Viktor Lenard'),
+	(17, '2024-11-24 11:04:12.306668+00', 37, 'packt', 17, 'inactive', 'leasehold', 3000, 9999, 3, 4, NULL, false, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW197BB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-24 11:04:12.306668+00', 'Dave Packt'),
+	(18, '2024-11-24 11:04:54.048234+00', 37, 'packt', 18, 'inactive', 'rental', 1000, 3000, 5, 2, NULL, NULL, NULL, NULL, 'c', NULL, NULL, NULL, NULL, NULL, NULL, 'SW4 6SZ', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-24 11:04:54.048234+00', 'Dave Packt'),
+	(19, '2024-11-24 11:05:43.741021+00', 37, 'packt', 19, 'inactive', 'rental', 12300, 50000, 5, 5, NULL, true, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'SW1 7BG', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-24 11:05:43.741021+00', 'Dave Packt'),
+	(20, '2024-11-24 11:06:17.389719+00', 37, 'packt', 20, 'inactive', 'rental', 30000, 10, 10, 10, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NW1 1BD', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-24 11:06:17.389719+00', 'Dave Packt'),
+	(21, '2024-11-24 21:56:14.994889+00', 38, 'packt', 21, 'inactive', 'rental', 2400, 2700, 2, 3, NULL, true, 12, '2024-12-01', 'd', NULL, NULL, NULL, NULL, NULL, NULL, 'SW1 8BB', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-11-24 21:56:14.994889+00', 'Yuko');
 
 
 --
@@ -1071,7 +1208,12 @@ INSERT INTO "public"."tenant_permissions" ("id", "created_at", "service_user", "
 	(17, '2024-11-10 21:12:42.810372+00', 27, 'packt'),
 	(18, '2024-11-10 21:21:38.211103+00', 28, 'packt'),
 	(19, '2024-11-11 13:50:45.818384+00', 30, 'packt'),
-	(20, '2024-11-12 23:38:42.52479+00', 32, 'foxtons');
+	(20, '2024-11-12 23:38:42.52479+00', 32, 'foxtons'),
+	(21, '2024-11-24 10:50:34.015593+00', 35, 'packt'),
+	(22, '2024-11-24 10:57:16.374305+00', 36, 'packt'),
+	(23, '2024-11-24 11:02:29.25443+00', 37, 'packt'),
+	(24, '2024-11-24 21:54:48.525084+00', 38, 'packt'),
+	(25, '2024-11-24 21:59:17.033631+00', 39, 'smiths');
 
 
 --
@@ -1114,7 +1256,7 @@ INSERT INTO "public"."tenant_permissions" ("id", "created_at", "service_user", "
 -- Name: refresh_tokens_id_seq; Type: SEQUENCE SET; Schema: auth; Owner: supabase_auth_admin
 --
 
-SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 349, true);
+SELECT pg_catalog.setval('"auth"."refresh_tokens_id_seq"', 400, true);
 
 
 --
@@ -1128,28 +1270,28 @@ SELECT pg_catalog.setval('"pgsodium"."key_key_id_seq"', 1, false);
 -- Name: listings_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."listings_id_seq"', 7, true);
+SELECT pg_catalog.setval('"public"."listings_id_seq"', 21, true);
 
 
 --
 -- Name: listings_reference_nr_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."listings_reference_nr_seq"', 7, true);
+SELECT pg_catalog.setval('"public"."listings_reference_nr_seq"', 21, true);
 
 
 --
 -- Name: service_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."service_users_id_seq"', 34, true);
+SELECT pg_catalog.setval('"public"."service_users_id_seq"', 39, true);
 
 
 --
 -- Name: tenant_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('"public"."tenant_permissions_id_seq"', 20, true);
+SELECT pg_catalog.setval('"public"."tenant_permissions_id_seq"', 25, true);
 
 
 --

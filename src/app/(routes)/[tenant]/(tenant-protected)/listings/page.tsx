@@ -14,7 +14,8 @@ const TenantListingsPage = async ({ params, searchParams} : { params: { tenant: 
             <h1>Listings</h1>
 
             <div className="flex">
-                <Button dark={true} href={`/${tenant}/listings/new`}>Create new</Button>
+                <Button className='mr-2' dark={true} href={`/${tenant}/dashboard`}>Dashboard</Button>
+                <Button className='bg-green-600 font-bold' dark={true} href={`/${tenant}/listings/new`}>Create new</Button>
             </div>
             <ListingFilter tenant={tenant}/>
             <ListingList params={searchParams} tenant={tenant}/>

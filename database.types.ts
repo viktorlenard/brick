@@ -168,6 +168,7 @@ export type Database = {
           created_at: string
           full_name: string | null
           id: number
+          job_title: string | null
           supabase_user: string
           user_type: Database["public"]["Enums"]["user_type"]
         }
@@ -175,6 +176,7 @@ export type Database = {
           created_at?: string
           full_name?: string | null
           id?: number
+          job_title?: string | null
           supabase_user: string
           user_type?: Database["public"]["Enums"]["user_type"]
         }
@@ -182,6 +184,7 @@ export type Database = {
           created_at?: string
           full_name?: string | null
           id?: number
+          job_title?: string | null
           supabase_user?: string
           user_type?: Database["public"]["Enums"]["user_type"]
         }
@@ -249,7 +252,12 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_tenant_userlist: {
+        Args: {
+          tenant_id: string
+        }
+        Returns: Json
+      }
     }
     Enums: {
       council_tax_band: "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i"
@@ -263,7 +271,7 @@ export type Database = {
         | "hvac"
       listing_status: "active" | "inactive" | "suspended" | "taken"
       listing_type: "rental" | "freehold" | "leasehold"
-      parking_type: "street" | "driveway" | "garage"
+      parking_type: "street" | "driveway" | "garage" | "none"
       user_type: "consumer" | "business"
     }
     CompositeTypes: {
