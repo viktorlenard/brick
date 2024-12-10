@@ -7,11 +7,17 @@ import { useParams, useRouter } from "next/navigation"
 import { Tables, type Database } from "../../../../../../../database.types"
 import { ListingType } from "@/app/types/listings"
 import { isValidTenant } from "@/tenant_map"
+import { AssigneeSelect } from "@/app/components/AssigneeSelect"
 
 type ListingRow = Database['public']['Tables']['listings']['Row'];
 
 const NewListingPage = () => {
-    
+    const [assignee, setAssignee] = useState<number | null>(null);
+
+    useEffect(() => {
+        console.log(assignee)
+    }, [assignee])
+
     const router = useRouter()
     const { tenant } = useParams()
     const supabase = getClient()
@@ -77,6 +83,7 @@ const NewListingPage = () => {
                     if (available_from) listingData.available_from = available_from as ListingRow['available_from']
                     if (min_tenancy_months) listingData.min_tenancy_months = parseFloat(min_tenancy_months) as ListingRow['min_tenancy_months']
                     if (council_tax_band) listingData.council_tax_band = council_tax_band as ListingRow['council_tax_band']
+                    if (assignee) listingData.assignee = assignee as ListingRow['assignee']
 
                     supabase
                         .from('listings')
@@ -98,6 +105,10 @@ const NewListingPage = () => {
                 className='flex flex-col items-center min-w-48'>
                 <h1 className='font-bold underline'>List a new property</h1>
                 <p className='mb-2 font-bold text-accent'>{`(In development)`}</p>
+                <label>Assign to user</label>
+                <AssigneeSelect
+                    tenant={tenant as string}
+                    onValueChanged={(v) => setAssignee(v)} />
                 <label>Listing Type</label>
                 <select disabled={isLoading} ref={listingTypeRef} className='mb-2' name='Type' id='listing_type' required>
                     <option value={'rental'}>Rental</option>

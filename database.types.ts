@@ -37,6 +37,8 @@ export type Database = {
       listings: {
         Row: {
           allows_pets: boolean | null
+          assignee: number | null
+          assignee_name: string | null
           author_name: string
           available_from: string | null
           bathrooms: number | null
@@ -74,6 +76,8 @@ export type Database = {
         }
         Insert: {
           allows_pets?: boolean | null
+          assignee?: number | null
+          assignee_name?: string | null
           author_name: string
           available_from?: string | null
           bathrooms?: number | null
@@ -111,6 +115,8 @@ export type Database = {
         }
         Update: {
           allows_pets?: boolean | null
+          assignee?: number | null
+          assignee_name?: string | null
           author_name?: string
           available_from?: string | null
           bathrooms?: number | null
@@ -147,6 +153,13 @@ export type Database = {
           town_city?: string | null
         }
         Relationships: [
+          {
+            foreignKeyName: "listings_assignee_fkey"
+            columns: ["assignee"]
+            isOneToOne: false
+            referencedRelation: "service_users"
+            referencedColumns: ["id"]
+          },
           {
             foreignKeyName: "listings_created_by_fkey"
             columns: ["created_by"]

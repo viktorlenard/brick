@@ -9,7 +9,8 @@ const DashboardPage = async ({ params }: PageParams) => {
         <div className="flex flex-col items-center justify-center">  
             <div className='flex justify-center min-w-full mb-4'>
                 <div className='flex flex-col items-center max-w-96 w-full min-h-72 rounded-sm outline px-4'>
-                    <h1 className="font-bold text-2xl my-3">Listings</h1>
+                    <h1 className="font-bold text-2xl mt-3">Listings</h1>
+                    <p className='font-mono text-sm font-bold text-accent mb-3'>NOT REAL DATA!</p>
                     <div className="flex justify-between w-full">
                         <h3 className='font-mono font-bold'>TOTAL</h3>
                         <h3 className='flex justify-center font-mono font-bold text-light bg-dark px-2 rounded-sm w-8'>16</h3>

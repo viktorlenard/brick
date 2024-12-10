@@ -8,6 +8,11 @@ const consumerProtectedRoutes: ValidRoute[] = [
 const sharedProtectedRoutes: ValidRoute[] = [
     '/change-password'
 ]
+
+export const publicRoutes: ValidRoute[] = [
+    '/',
+    '/not-found',
+]
 // Manually add tenants to match DB.
 export const TENANT_MAP: TenantConfig[] = [
     { domain: 'foxtons.com', tenantId: 'foxtons' },

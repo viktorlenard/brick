@@ -1,9 +1,7 @@
-import { PageParams } from "@/app/types/pages"
 import { Button } from "@/app/components/Button"
 import { ListingList } from "@/app/components/ListingList"
 import { SearchParams } from "next/dist/server/request/search-params"
 import { ListingFilter } from "@/app/components/ListingFilter"
-import { Suspense } from "react"
 export const dynamic = "force-dynamic"
 
 const TenantListingsPage = async ({ params, searchParams} : { params: { tenant: string }, searchParams: SearchParams }) => {

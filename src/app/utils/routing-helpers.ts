@@ -1,4 +1,4 @@
-import { protectedRoutes } from "@/tenant_map";
+import { protectedRoutes, publicRoutes } from "@/tenant_map";
 import { NextRequest, NextResponse } from "next/server";
 import { TenantId, UserTypes, UserData } from "./user-helpers";
 
@@ -49,6 +49,10 @@ export const getRouteConfig = (path: string) : Route => {
                 return { path: path, type: RouteTypes.BusinessLogin, tenant: firstSegment}
             } 
             return { path: path, type: RouteTypes.Business, tenant: firstSegment}
+        } else if (publicRoutes.includes(`/${firstSegment}`)) {
+            return { path: path, type: RouteTypes.Public }
+        } else {
+            return { path: path, type: RouteTypes.None}
         }
     }
     return { path: path, type: RouteTypes.Public }
@@ -98,7 +102,7 @@ export const handleBusinessLoginRoute = (user : UserData, route: Route, request:
     return NextResponse.next();
 }
 
-export const handleBusinessRoute = (user : UserData, route: Route, request: NextRequest) => {
+export const handleBusinessRoute = (user : UserData, route: Route, request: NextRequest) => { 
     switch(user.type) {
         case UserTypes.Anonymous:
             return NextResponse.redirect(new URL(`/${route.tenant}/login/`, request.url));
