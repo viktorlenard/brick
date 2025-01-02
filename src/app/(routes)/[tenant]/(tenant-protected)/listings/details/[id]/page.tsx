@@ -29,7 +29,6 @@ const ListingsDetailsPage = async ({ params, searchParams} : { params: { tenant:
     .single()
     
   const isAuthor = serviceUser!.id === listing.created_by
-  console.log(isAuthor)
 
   const strongStyle = "font-mono font-bold text-reg md:text-lg";
   const dataStyle = "font-mono text-reg md:text-lg";
@@ -41,7 +40,7 @@ const ListingsDetailsPage = async ({ params, searchParams} : { params: { tenant:
 
   return (
     <>
-      <ListingDetailsButtons isAuthor={isAuthor} id={id} tenant={tenant} page={page}/>
+      <ListingDetailsButtons isAuthor={isAuthor} id={id} tenant={tenant} page={page} assignee={listing.assignee}/>
       <div className="grid grid-cols-2 gap-1 flex-col max-w-[700px]">
         <h1 className={strongStyle}>ID:</h1>
         <p className={dataStyle}>{listing.id || placeholder}</p>
@@ -51,6 +50,9 @@ const ListingsDetailsPage = async ({ params, searchParams} : { params: { tenant:
 
         <h1 className={strongStyle}>Created By:</h1>
         <p className={dataStyle}>{listing.author_name || placeholder}</p>
+
+        <h1 className={strongStyle}>Assignee:</h1>
+        <p className={dataStyle}>{listing.assignee_name || "Unassigned"}</p>
 
         <h1 className={strongStyle}>Tenant:</h1>
         <p className={dataStyle}>{listing.tenant || placeholder}</p>

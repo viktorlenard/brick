@@ -3,13 +3,18 @@ import { Button } from "./Button"
 import { getClient } from "../utils/supabase/browserClient"
 import { useState, useRef } from "react"
 import { useRouter } from "next/navigation"
+import { AssigneeSelect } from "./AssigneeSelect"
 
-export const ListingDetailsButtons = ({ isAuthor, tenant, id, page } : {isAuthor : boolean, tenant : string, id: number, page: string | string[] | undefined}) => {
+export const ListingDetailsButtons = ({ isAuthor, tenant, id, page, assignee } : {isAuthor : boolean, tenant : string, id: number, page: string | string[] | undefined, assignee: number}) => {
 
     const deleteInputRef = useRef<HTMLInputElement>(null)
     const supabase = getClient()
     const router = useRouter()
     const [confirming, setConfirming] = useState<boolean>(false)
+
+    console.log('THIS IS THE ASSIGNEE' + assignee)
+
+    // const [assignee, setAssignee] = useState<number | null>(null);
 
     const submitDeletion = (id : number) => {
         if (deleteInputRef.current?.value === 'DELETE') {
@@ -52,9 +57,23 @@ export const ListingDetailsButtons = ({ isAuthor, tenant, id, page } : {isAuthor
                     Back
                 </Button>
             {isAuthor && (
-                <Button onClick={() => setConfirming(true)} className='bg-red-700 font-bold mx-2' dark={true} >
-                    Delete
-                </Button>
+                <div>
+                    <Button onClick={() => setConfirming(true)} className='bg-red-700 font-bold mx-2' dark={true} >
+                        Delete
+                    </Button>
+                    <AssigneeSelect 
+                        tenant={tenant} 
+                        onValueChanged={(v) => {
+                            supabase
+                                .from("listings")
+                                .update({
+                                    assignee: v,
+                                })
+                                .eq("id", id)
+                                .then(() => router.refresh())
+                        }} 
+                        initialValue={assignee}/>
+                </div>
                   )}
                   </div>
         </div>

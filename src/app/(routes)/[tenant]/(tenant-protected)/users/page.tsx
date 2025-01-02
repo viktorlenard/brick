@@ -16,7 +16,7 @@ const UserList = async ( { params } : { params: {tenant : string} } ) => {
     if (error && !users) {
         throw new Error('Failed to fetch userlist')
     }
-    console.log(users)
+    // console.log(users)
     const sortedUsers = users.sort((a: User, b: User) => a.id - b.id);
     
     return(

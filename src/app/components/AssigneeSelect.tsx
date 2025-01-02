@@ -10,9 +10,10 @@ interface User {
 interface AssigneeSelectProps {
     tenant: string;
     onValueChanged: (value: number | null) => void;
+    initialValue?: number
 }
 
-export const AssigneeSelect = ({ tenant, onValueChanged }: AssigneeSelectProps) => {
+export const AssigneeSelect = ({ tenant, onValueChanged, initialValue }: AssigneeSelectProps) => {
     const [users, setUsers] = useState<User[]>([])
     const supabase = getClient()
 
@@ -33,6 +34,7 @@ export const AssigneeSelect = ({ tenant, onValueChanged }: AssigneeSelectProps) 
     return(
         <select
             name='assignee'
+            value={initialValue === null ? '' : initialValue}
             disabled={users.length === 0}
             onChange={(event) => {
                 const value = event.target.value
